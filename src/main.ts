@@ -158,7 +158,7 @@ const bravoItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Nova | Tempest", value: 8.32, rarity: "mil-spec" },
   { name: "M4A1-S | Bright Water", value: 45.00, rarity: "restricted" },
   { name: "MAC-10 | Graven", value: 39.12, rarity: "restricted" },
-  { name: "USP-S | Overgrwoth", value: 63.00, rarity: "restricted" },
+  { name: "USP-S | Overgrowth", value: 63.00, rarity: "restricted" },
   { name: "M4A4 | Zirka", value: 60.00, rarity: "restricted" },
   { name: "P90 | Emerald Dragon", value: 240.00, rarity: "classified" },
   { name: "P200 | Ocean Foam", value: 132.12, rarity: "classified" },
@@ -197,7 +197,6 @@ async function fetchPriceLow(caseType: string): Promise<void> {
   const data = await fetched.json();
 
   if (!data || !data.mean_price) {
-    console.log(data)
     return;
   }
 
@@ -221,6 +220,7 @@ async function fetchPriceHigh(caseType: string): Promise<void> {
   for (let e of validCase) {
     caseUrl += e + "%20"
   }
+  console.log(caseType)
   const fetched = await fetch(`https://api.flik.host/steam_market.php?item=${caseUrl}`)
   
   const data = await fetched.json();
@@ -277,7 +277,7 @@ function getRandomItem(
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-function createWheelItems(caseItems: { name: string; value: number; rarity: string }[], winningItem: { name: string; value: number; rarity: string }): void {
+function createWheelItems(caseItems: { name: string; value: number; rarity: string }[], winningItem: { name: string; value: number; rarity: string }, isHighCase: boolean = false): void {
   wheelItems.innerHTML = '';
   
   const rarityWeights: Record<string, number> = {
@@ -300,13 +300,27 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     return weightedPool;
   };
   
-  const getItemImage = (itemName: string): string => {
-    const currentCase = caseNamesLow[onCaseLow] || caseNamesHigh[onCaseHigh];
+  const getItemImage = (itemName: string, rarity: string): string => {
+    if (rarity === 'contraband') {
+      return '/assets/gold.png';
+    }
+    
     let folder = '';
     
-    if (currentCase === 'Kilowatt Case') folder = 'kilowatt';
-    else if (currentCase === 'Revolution Case') folder = 'revolution';
-    else folder = 'kilowatt';
+    if (isHighCase) {
+      const currentCaseHigh = caseNamesHigh[onCaseHigh];
+      if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
+      else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'kilowatt';
+      else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'kilowatt';
+      else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'kilowatt';
+      else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'revolution';
+      else folder = 'kilowatt';
+    } else {
+      const currentCaseLow = caseNamesLow[onCaseLow];
+      if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
+      else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
+      else folder = 'kilowatt';
+    }
     
     const imageName = itemName.split(' | ')[1]?.toLowerCase().replace(/\s+/g, ' ') || 'slag';
     return `/assets/${folder}/${imageName}.png`;
@@ -332,13 +346,10 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     const itemDiv = document.createElement('div');
     itemDiv.className = `wheel-item rarity-${item.rarity}`;
     
-    const itemText = item.name.length > 12 ? item.name.substring(0, 12) + '...' : item.name;
-    const imageUrl = getItemImage(item.name);
+    const imageUrl = getItemImage(item.name, item.rarity);
     
     itemDiv.innerHTML = `
-      <img src="${imageUrl}" alt="${item.name}" class="w-8 h-8 object-contain mb-1" onerror="this.style.display='none'">
-      <div class="text-xs font-bold mb-1">${itemText}</div>
-      <div class="text-xs">£${item.value.toFixed(2)}</div>
+      <img src="${imageUrl}" alt="${item.name}" class="w-16 h-16 object-contain" onerror="this.style.display='none'">
     `;
     
     wheelItems.appendChild(itemDiv);
@@ -346,13 +357,34 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
   
   console.log(`Created ${wheelItemsArray.length} items, winning position: ${winningPosition}`);
   
-  const itemWidth = 74;
+  const itemWidth = 84;
   const wheelCenter = weaponWheel.offsetWidth / 2;
   
   const finalPosition = -(winningPosition * itemWidth) + wheelCenter - (itemWidth / 2);
   
   console.log(`Final position: ${finalPosition}px`);
   document.documentElement.style.setProperty('--final-position', `${finalPosition}px`);
+}
+
+function getActualItemImage(itemName: string): string {
+  let folder = '';
+  
+  // Determine which case type we're dealing with
+  const currentCaseLow = caseNamesLow[onCaseLow];
+  const currentCaseHigh = caseNamesHigh[onCaseHigh];
+  
+  // Check if we're in a high case context
+  if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
+  else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'kilowatt';
+  else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'kilowatt';
+  else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'kilowatt';
+  else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'revolution';
+  else if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
+  else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
+  else folder = 'kilowatt';
+  
+  const imageName = itemName.split(' | ')[1]?.toLowerCase().replace(/\s+/g, ' ') || 'slag';
+  return `/assets/${folder}/${imageName}.png`;
 }
 
 function startWheelSpin(): void {
@@ -371,7 +403,7 @@ function startCaseOpeningLow() {
   
   const item = getRandomItem(relationLow[caseNamesLow[onCaseLow]]);
   
-  createWheelItems(relationLow[caseNamesLow[onCaseLow]], item);
+  createWheelItems(relationLow[caseNamesLow[onCaseLow]], item, false);
   
   setTimeout(() => {
     startWheelSpin();
@@ -383,6 +415,14 @@ function startCaseOpeningLow() {
     
     itemName.innerText = item.name;
     itemValue.innerText = "£" + item.value.toFixed(2);
+    
+    // Set the actual item image (not gold.png for contraband)
+    const itemImage = document.getElementById('item-image') as HTMLImageElement;
+    if (itemImage) {
+      itemImage.src = getActualItemImage(item.name);
+      itemImage.alt = item.name;
+    }
+    
     revealedItem.classList.remove("hidden");
     closeOpeningButton.classList.remove("hidden");
     
@@ -401,7 +441,7 @@ function startCaseOpeningHigh() {
   
   const item = getRandomItem(relationHigh[caseNamesHigh[onCaseHigh]]);
   
-  createWheelItems(relationHigh[caseNamesHigh[onCaseHigh]], item);
+  createWheelItems(relationHigh[caseNamesHigh[onCaseHigh]], item, true);
   
   setTimeout(() => {
     startWheelSpin();
@@ -413,6 +453,14 @@ function startCaseOpeningHigh() {
     
     itemName.innerText = item.name;
     itemValue.innerText = "£" + item.value.toFixed(2);
+    
+    // Set the actual item image (not gold.png for contraband)
+    const itemImage = document.getElementById('item-image') as HTMLImageElement;
+    if (itemImage) {
+      itemImage.src = getActualItemImage(item.name);
+      itemImage.alt = item.name;
+    }
+    
     revealedItem.classList.remove("hidden");
     closeOpeningButton.classList.remove("hidden");
     

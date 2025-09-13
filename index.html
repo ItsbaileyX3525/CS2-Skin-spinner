@@ -22,7 +22,6 @@
           <div id="weapon-wheel" class="relative w-full max-w-4xl h-24 mx-auto overflow-hidden bg-gray-800 border-2 border-gray-600 rounded-lg">
             <div class="absolute top-1/2 left-1/2 w-1 h-8 bg-yellow-400 transform -translate-x-1/2 -translate-y-1/2 z-10 triangle-down"></div>
             <div id="wheel-items" class="flex transition-transform duration-6000 ease-out" style="transform: translateX(0px);">
-              <!-- Items will be populated here -->
             </div>
           </div>
         </div>
@@ -30,8 +29,11 @@
         <div id="revealed-item" class="hidden opening-reveal">
           <div class="bg-gray-800 border-2 border-yellow-400 rounded-lg p-6 max-w-md mx-auto">
             <h3 class="text-white text-xl mb-2">You got:</h3>
-            <div class="text-yellow-400 text-2xl font-bold mb-2" id="item-name">Mystery Item</div>
-            <div class="text-green-400 text-lg" id="item-value">£0.00</div>
+            <div class="flex flex-col items-center mb-4">
+              <img id="item-image" src="" alt="Item" class="w-24 h-24 object-contain mb-2">
+              <div class="text-yellow-400 text-2xl font-bold mb-2" id="item-name">Mystery Item</div>
+              <div class="text-green-400 text-lg" id="item-value">£0.00</div>
+            </div>
           </div>
         </div>
         
