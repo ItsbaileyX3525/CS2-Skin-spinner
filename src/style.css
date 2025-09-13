@@ -51,6 +51,60 @@
   }
 }
 
+@keyframes wheel-spin {
+  0% { 
+    transform: translateX(0px); 
+  }
+  100% { 
+    transform: translateX(var(--final-position)); 
+  }
+}
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 16px solid #fbbf24;
+  position: absolute;
+  top: -8px;
+}
+
+.wheel-item {
+  min-width: 70px;
+  width: 70px;
+  height: 80px;
+  margin: 5px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 2px solid;
+  font-size: 8px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.rarity-consumer { border-color: #9ca3af; background: linear-gradient(135deg, #374151, #4b5563); }
+.rarity-mil-spec { border-color: #3b82f6; background: linear-gradient(135deg, #1e40af, #3b82f6); }
+.rarity-restricted { border-color: #8b5cf6; background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+.rarity-classified { border-color: #ef4444; background: linear-gradient(135deg, #dc2626, #ef4444); }
+.rarity-covert { border-color: #f59e0b; background: linear-gradient(135deg, #d97706, #f59e0b); }
+.rarity-contraband { border-color: #eab308; background: linear-gradient(135deg, #ca8a04, #eab308); }
+
+.wheel-spinning #wheel-items {
+  animation: wheel-spin 6s cubic-bezier(0.17, 0.67, 0.12, 0.99) forwards;
+}
+
+#wheel-items {
+  width: max-content;
+}
+
 .opening-case {
   animation: spin-case 2s ease-in-out infinite;
 }
