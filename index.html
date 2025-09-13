@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="module" crossorigin src="/assets/index-CNXLYT_z.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DJaGTZFq.css">
+  <script type="module" crossorigin src="/assets/index-DC389cs-.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-ShviUzhz.css">
 </head>
 <body>
   <div id="open-screen" class="hidden top-0 left-0 z-10 bg-gray-600 h-screen w-screen">
@@ -20,7 +20,12 @@
       <div class="text-center">
         <h2 class="text-white text-3xl mb-8 opening-slide">Opening Case...</h2>
         <div class="mb-8 relative">
-          <!--Add weapon wheel thing-->
+          <div id="weapon-wheel" class="relative w-full max-w-4xl h-24 mx-auto overflow-hidden bg-gray-800 border-2 border-gray-600 rounded-lg">
+            <div class="absolute top-1/2 left-1/2 w-1 h-8 bg-yellow-400 transform -translate-x-1/2 -translate-y-1/2 z-10 triangle-down"></div>
+            <div id="wheel-items" class="flex transition-transform duration-6000 ease-out" style="transform: translateX(0px);">
+              <!-- Items will be populated here -->
+            </div>
+          </div>
         </div>
         
         <div id="revealed-item" class="hidden opening-reveal">
