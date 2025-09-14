@@ -20,6 +20,10 @@ const itemValue = document.getElementById("item-value") as HTMLDivElement;
 const openSound = new Audio('/assets/open.mp3');
 const weaponWheel = document.getElementById("weapon-wheel") as HTMLDivElement;
 const wheelItems = document.getElementById("wheel-items") as HTMLDivElement;
+const deleteData = document.getElementById('delete-data') as HTMLParagraphElement;
+const eraseScreen = document.getElementById("erase-screen") as HTMLDivElement;
+const eraseButton = document.getElementById("erase-button") as HTMLButtonElement;
+const dontEraseButton = document.getElementById("dont-erase-button") as HTMLButtonElement;
 
 let marketPriceLow: number = 0.00
 let marketPriceHigh: number = 0.00
@@ -32,6 +36,33 @@ let keyPriceLow: number = 2.50
 let keyPriceHigh: number = 9.50 //Fluctuates a lot so just keep it at an average
 
 let cachedPrices: Record<string, string> = {}
+
+function saveData(): void {
+
+  let data = {
+    "totalSpent" : totalSpent,
+    "totalGain" : totalGain,
+    //Perhaps save weapons claimed
+  }
+  spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
+  gainAmountText.innerHTML = "£" + String(totalGain.toFixed(2))
+  localStorage.setItem("data", JSON.stringify(data))
+}
+
+function loadData(): void {
+  var data: string | null = localStorage.getItem("data")
+  if (data === null) {
+    saveData()
+    loadData()
+    return
+  }
+  var parsedData = JSON.parse(data) as { totalSpent?: number; totalGain?: number }
+  totalGain = typeof parsedData.totalGain === "number" ? parsedData.totalGain : 0.00
+  totalSpent = typeof parsedData.totalSpent === "number" ? parsedData.totalSpent : 0.00
+  spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
+  gainAmountText.innerHTML = "£" + String(totalGain.toFixed(2))
+
+}
 
 const caseNamesLow: string[] = [
   "Kilowatt Case",
@@ -593,9 +624,7 @@ buyButtonLow.addEventListener("click", () => {
   totalSpent += keyPriceLow
   totalSpent += marketPriceLow
   totalGain -= marketPriceLow
-  spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
-  gainAmountText.innerHTML = "£" + String(totalGain.toFixed(2))
-  
+  saveData()
   startCaseOpeningLow()
 })
 
@@ -634,9 +663,7 @@ buyButtonHigh.addEventListener("click", () => {
   totalSpent += keyPriceHigh
   totalSpent += marketPriceHigh
   totalGain -= marketPriceHigh
-  spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
-  gainAmountText.innerHTML = "£" + String(totalGain.toFixed(2))
-  
+  saveData()
   startCaseOpeningHigh()
 })
 
@@ -647,7 +674,23 @@ closeOpeningButton.addEventListener("click", () => {
   wheelItems.innerHTML = ''
 })
 
+deleteData.addEventListener("click", () => {
+  eraseScreen.classList.add("absolute")
+  eraseScreen.classList.remove("hidden")
+})
+
+eraseButton.addEventListener("click", () => {
+  localStorage.clear()
+  window.location.reload()
+})
+
+dontEraseButton.addEventListener("click", () => {
+  eraseScreen.classList.add("hidden")
+  eraseScreen.classList.remove("absolute")
+})
+
 document.addEventListener("DOMContentLoaded", async () => {
+  loadData()
   await fetchPriceLow("Kilowatt Case")
   await fetchPriceHigh("Operation Bravo Case")
 });
