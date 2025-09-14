@@ -68,12 +68,20 @@ const caseNamesLow: string[] = [
   "Kilowatt Case",
   "Revolution Case",
   "Fracture Case",
+  "Snakebite Case",
+  "Fever Case",
+  "Clutch Case",
+  "Dreams & Nightmares Case"
 ]
 
 const casesLow: Record<string, string> = {
   "Kilowatt Case" : "/assets/cases/kilowatt.png",
   "Revolution Case" : "/assets/cases/revolution.png",
   "Fracture Case" : "/assets/cases/fracture.png",
+  "Snakebite Case" : "/assets/cases/snakebite.png",
+  "Fever Case" : "/assets/cases/fever.png",
+  "Clutch Case" : "/assets/cases/clutch.png",
+  "Dreams & Nightmares Case" : "/assets/cases/dreams.png"
 }
 
 const caseNamesHigh: string[] = [
@@ -133,7 +141,11 @@ const kilowattItems: { name: string; value: number; rarity: string }[] = [
   { name: "M4A1-S | Black Lotus", value: 16.80, rarity: "classified" },
   { name: "AWP | Chrome Cannon", value: 56.10, rarity: "covert" },
   { name: "AK-47 | Inheritance", value: 181.13, rarity: "covert" },
-  { name: "Kukri Knife | Fade", value: 412.53, rarity: "contraband" },
+  { name: "★ Kukri Knife | Fade", value: 412.53, rarity: "contraband" },
+  { name: "★ Kukri Knife | Forest DDPAT", value: 385.00, rarity: "contraband" },
+  { name: "★ Kukri Knife | Vanilla", value: 520.00, rarity: "contraband" },
+  { name: "★ Kukri Knife | Crimson Web - kukri Knife", value: 450.00, rarity: "contraband" },
+  { name: "★ Kukri Knife | Case Hardened", value: 390.00, rarity: "contraband" },
 ]
 
 const revolutionItems: { name: string; value: number; rarity: string; }[] = [
@@ -154,7 +166,11 @@ const revolutionItems: { name: string; value: number; rarity: string; }[] = [
   { name: "AWP | Duality", value: 9.18, rarity: "classified" },
   { name: "AK-47 | Headshot", value: 51.53, rarity: "covert" },
   { name: "M4A1 | Temukau", value: 63.04, rarity: "covert" },
-  { name: "Glove | Vice", value: 12521.42, rarity: "contraband" },
+  { name: "★ Sport Gloves | Vice", value: 9387.11, rarity: "contraband" },
+  { name: "★ Driver Gloves | King Snake", value: 3936.66, rarity: "contraband" },
+  { name: "★ Sport Gloves | Omega", value: 2296.85, rarity: "contraband" },
+  { name: "★ Hand Wraps | Cobalt Skulls", value: 1686.66, rarity: "contraband" },
+  { name: "★ Driver Gloves | Imperial Plaid", value: 1171.89, rarity: "contraband" },
 ]
 
 const fractureItems: { name: string; value: number; rarity: string; }[] = [
@@ -175,14 +191,146 @@ const fractureItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Glock-18 | Vouge", value: 8.32, rarity: "classified" },
   { name: "AK-47 | Legion of Anubis", value: 35.23, rarity: "covert" },
   { name: "Desert Eagle | Printstream", value: 75.43, rarity: "covert" },
-  { name: "Skeleton Knife | Fade", value: 1278.94, rarity: "contrband" },
+  { name: "★ Skeleton Knife | Fade", value: 952.50, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Slaughter - Skeleton Knife", value: 603.75, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Case Hardened", value: 606.30, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Blue Steel", value: 465.00, rarity: "contraband" },
+  { name: "★ Nomad Knife | Slaughter - Nomad Knife", value: 376.89, rarity: "contraband" },
+]
 
+const recoilItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "UMP-45 | Roadblock", value: 0.20, rarity: "mil-spec" },
+  { name: "Negev | Drop Me", value: 0.20, rarity: "mil-spec" },
+  { name: "MAC-10 | Monkeyflage", value: 0.21, rarity: "mil-spec" },
+  { name: "FAMAS | Meow 36", value: 0.23, rarity: "mil-spec" },
+  { name: "Galil AR | Destroyer", value: 0.23, rarity: "mil-spec" },
+  { name: "Glock-18 | Winterized", value: 0.26, rarity: "mil-spec" },
+  { name: "M4A4 | Poly Mag", value: 0.85, rarity: "mil-spec" },
+  { name: "R8 Revolver | Crazy 8", value: 1.42, rarity: "restricted" },
+  { name: "P90 | Vent Rush", value: 1.22, rarity: "restricted" },
+  { name: "Dual Berettas | Flora Carnivora", value: 1.65, rarity: "restricted" },
+  { name: "SG 553 | Dragon Tech", value: 1.29, rarity: "restricted" },
+  { name: "M249 | Downtown", value: 1.40, rarity: "restricted" },
+  { name: "Sawed-Off | Kiss♥Love", value: 8.95, rarity: "classified" },
+  { name: "P250 | Visions", value: 7.48, rarity: "classified" },
+  { name: "AK-47 | Ice Coaled", value: 14.52, rarity: "classified" },
+  { name: "AWP | Chromatic Aberration", value: 26.73, rarity: "covert" },
+  { name: "USP-S | Printstream", value: 96.68, rarity: "covert" },
+  { name: "★ Sport Gloves | Nocts", value: 3637.50, rarity: "contraband" },
+  { name: "★ Driver Gloves | Snow Leopard", value: 2651.48, rarity: "contraband" },
+  { name: "★ Specialist Gloves | Tiger Strike", value: 1918.19, rarity: "contraband" },
+  { name: "★ Specialist Gloves | Marble Fade", value: 2300.09, rarity: "contraband" },
+  { name: "★ Driver Gloves | Black Tie", value: 1838.60, rarity: "contraband" },
+]
+
+const snakebiteItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "R8 Revolver | Junk Yard", value: 0.57, rarity: "mil-spec" },
+  { name: "UMP-45 | Oscillator", value: 0.41, rarity: "mil-spec" },
+  { name: "CZ75-Auto | Circaetus", value: 0.49, rarity: "mil-spec" },
+  { name: "SG 553 | Heavy Metal", value: 0.51, rarity: "mil-spec" },
+  { name: "M249 | O.S.I.P.R.", value: 0.44, rarity: "mil-spec" },
+  { name: "Nova | Windblown", value: 0.42, rarity: "mil-spec" },
+  { name: "Glock-18 | Clear Polymer", value: 1.16, rarity: "mil-spec" },
+  { name: "Negev | dev_texture", value: 1.34, rarity: "restricted" },
+  { name: "MAC-10 | Button Masher", value: 1.40, rarity: "restricted" },
+  { name: "P250 | Cyber Shell", value: 1.52, rarity: "restricted" },
+  { name: "Desert Eagle | Trigger Discipline", value: 3.59, rarity: "restricted" },
+  { name: "AK-47 | Slate", value: 15.45, rarity: "restricted" },
+  { name: "XM1014 | XOXO", value: 12.53, rarity: "classified" },
+  { name: "MP9 | Food Chain", value: 12.32, rarity: "classified" },
+  { name: "Galil AR | Chromatic Aberration", value: 16.41, rarity: "classified" },
+  { name: "USP-S | The Traitor", value: 111.00, rarity: "covert" },
+  { name: "M4A4 | In Living Color", value: 116.25, rarity: "covert" },
+  { name: "★ Sport Gloves | Slingshot", value: 5263.37, rarity: "contraband" },
+  { name: "★ Sport Gloves | Scarlet Shamagh", value: 1657.69, rarity: "contraband" },
+  { name: "★ Broken Fang Gloves | Jade", value: 567.27, rarity: "contraband" },
+  { name: "★ Hand Wraps | CAUTION!", value: 909.44, rarity: "contraband" },
+  { name: "★ Moto Gloves | Blood Pressure", value: 866.66, rarity: "contraband" },
+]
+
+const feverItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "P2000 | Sure Grip", value: 0.26, rarity: "mil-spec" },
+  { name: "XM1014 | Mockingbird", value: 0.26, rarity: "mil-spec" },
+  { name: "MAG-7 | Resupply", value: 0.23, rarity: "mil-spec" },
+  { name: "MP9 | Nexus", value: 0.23, rarity: "mil-spec" },
+  { name: "SSG 08 | Memorial", value: 0.32, rarity: "mil-spec" },
+  { name: "M4A4 | Choppa", value: 1.01, rarity: "mil-spec" },
+  { name: "USP-S | PC-GRN", value: 0.71, rarity: "mil-spec" },
+  { name: "Nova | Rising Sun", value: 2.33, rarity: "restricted" },
+  { name: "P90 | Wave Breaker", value: 2.11, rarity: "restricted" },
+  { name: "Galil AR | Control", value: 2.21, rarity: "restricted" },
+  { name: "Zeus x27 | Tosai", value: 1.70, rarity: "restricted" },
+  { name: "Desert Eagle | Serpent Strike", value: 1.71, rarity: "restricted" },
+  { name: "UMP-45 | K.O Factory", value: 11.87, rarity: "classified" },
+  { name: "Glock-18 | Shinobu", value: 18.24, rarity: "classified" },
+  { name: "AK-47 | Searing Rage", value: 27.74, rarity: "classified" },
+  { name: "FAMAS | Bad Trip", value: 19.47, rarity: "covert" },
+  { name: "AWP | Printstream", value: 239.83, rarity: "covert" },
+  { name: "★ Skeleton Knife | Doppler", value: 1031.25, rarity: "contraband" },
+  { name: "★ Nomad Knife | Marble Fade", value: 395.63, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Tiger Tooth", value: 503.08, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Damascus Steel", value: 325.10, rarity: "contraband" },
+  { name: "★ Skeleton Knife | Ultraviolet", value: 651.39, rarity: "contraband" },
+]
+
+const  clutchItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "MP9 | Blank Sand", value: 0.26, rarity: "mil-spec" },
+  { name: "PP-Bizon | Night Riot", value: 0.26, rarity: "mil-spec" },
+  { name: "P2000 | Urban Hazard", value: 0.23, rarity: "mil-spec" },
+  { name: "XM1014 | Oxide Blaze", value: 0.23, rarity: "mil-spec" },
+  { name: "R8 Revolver | Grip", value: 0.32, rarity: "mil-spec" },
+  { name: "SG 553 | Aloha", value: 1.01, rarity: "mil-spec" },
+  { name: "Five-SeveN | Flame Test", value: 0.71, rarity: "mil-spec" },
+  { name: "Nova | Wild Six", value: 2.33, rarity: "restricted" },
+  { name: "Negev | Lionfish", value: 2.11, rarity: "restricted" },
+  { name: "MAG-7 | SWAG-7", value: 2.21, rarity: "restricted" },
+  { name: "UMP-45 | Artic Wolf", value: 1.70, rarity: "restricted" },
+  { name: "Glock-18 | Moonrise", value: 1.71, rarity: "restricted" },
+  { name: "AUG | Stymphalian", value: 11.87, rarity: "classified" },
+  { name: "AWP | Mortis", value: 18.24, rarity: "classified" },
+  { name: "USP-S | Cortex", value: 27.74, rarity: "classified" },
+  { name: "MP7 | Bloodsport", value: 19.47, rarity: "covert" },
+  { name: "M4A4 | Neo-Noir", value: 239.83, rarity: "covert" },
+  { name: "★ Sport Gloves | Omega", value: 1031.25, rarity: "contraband" },
+  { name: "★ Hand Wraps | Overprint", value: 395.63, rarity: "contraband" },
+  { name: "★ Hydra Gloves | Emerald", value: 503.08, rarity: "contraband" },
+  { name: "★ Driver Gloves | Racing Green", value: 325.10, rarity: "contraband" },
+  { name: "★ Hydra Gloves | Mangrove", value: 651.39, rarity: "contraband" },
+]
+
+const  DreamsNightmaresItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "P2000 | Lifted Sprits", value: 0.26, rarity: "mil-spec" },
+  { name: "Sawed-Off | Spirit Board", value: 0.26, rarity: "mil-spec" },
+  { name: "MP5-SD | Necro Jr.", value: 0.23, rarity: "mil-spec" },
+  { name: "Five-SeveN | Scrawl", value: 0.23, rarity: "mil-spec" },
+  { name: "MAC-10 | Ensnared", value: 0.32, rarity: "mil-spec" },
+  { name: "MAG-7 | Foresight", value: 1.01, rarity: "mil-spec" },
+  { name: "SCAR-20 | Poultrygeist", value: 0.71, rarity: "mil-spec" },
+  { name: "G3SG1 | Dream Glade", value: 2.33, rarity: "restricted" },
+  { name: "XM1014 | Zombie Offensive", value: 2.11, rarity: "restricted" },
+  { name: "PP-Bizon | Space Cat", value: 2.21, rarity: "restricted" },
+  { name: "M4A1-S | Night Terror", value: 1.70, rarity: "restricted" },
+  { name: "MP7 | Abyssal Appartition", value: 1.71, rarity: "restricted" },
+  { name: "Dual Berettas | Melondrama", value: 11.87, rarity: "classified" },
+  { name: "FAMAS | Rapid Eye Movement", value: 18.24, rarity: "classified" },
+  { name: "MP9 | Starlight Protector", value: 27.74, rarity: "classified" },
+  { name: "AK-47 | Nightwish", value: 19.47, rarity: "covert" },
+  { name: "★ Shadow Doppler | Gamma Doppler", value: 1031.25, rarity: "contraband" },
+  { name: "★ Falchion Knife | Freehand", value: 395.63, rarity: "contraband" },
+  { name: "★ Bowie Knife | Lore", value: 503.08, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Black laminate", value: 325.10, rarity: "contraband" },
+  { name: "★ Shadow Daggers | Bright Water", value: 651.39, rarity: "contraband" },
 ]
 
 const relationLow: Record<string, { name: string; value: number; rarity: string; }[]> = {
   "Kilowatt Case" : kilowattItems,
   "Revolution Case" : revolutionItems,
   "Fracture Case" : fractureItems,
+  "Recoil Case" : recoilItems,
+  "Snakebite Case" : snakebiteItems,
+  "Fever Case" : feverItems,
+  "Clutch Case" : clutchItems,
+  "Dreams & Nightmares" : DreamsNightmaresItems
 }
 
 const weaponItems: { name: string; value: number; rarity: string; }[] = [
@@ -195,7 +343,11 @@ const weaponItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Desert Eagle | Hypnotic", value: 98.24, rarity: "classified" },
   { name: "AK-47 | Case Hardened", value: 370.99, rarity: "classified" },
   { name: "AWP | Lightning Strike", value: 543.54, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Fade", value: 1869.04, rarity: "contraband" },
+  { name: "★ Karambit | Vanilla", value: 1736.47, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Blue Steel", value: 873.71, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Stained", value: 657.75, rarity: "contraband" },
+  { name: "★ Bayonet | Vanilla", value: 359.19, rarity: "contraband" },
 ]
 
 const weapon2Items: { name: string; value: number; rarity: string; }[] = [
@@ -211,7 +363,11 @@ const weapon2Items: { name: string; value: number; rarity: string; }[] = [
   { name: "P90 | Cold Blooded", value: 49.59, rarity: "classified" },
   { name: "USP-S | Serum", value: 54.09, rarity: "classified" },
   { name: "SSG 08 | Blood in the Water", value: 94.17, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ Karambit | Crimson Web", value: 4515.87, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Crimson Web", value: 2925.00, rarity: "contraband" },
+  { name: "★ Karambit | Vanilla", value: 1736.47, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Vanilla", value: 1222.54, rarity: "contraband" },
+  { name: "★ Karambit | Stained", value: 900.00, rarity: "contraband" },
 ]
 
 const esports2013Items: { name: string; value: number; rarity: string; }[] = [
@@ -224,7 +380,11 @@ const esports2013Items: { name: string; value: number; rarity: string; }[] = [
   { name: "AK-47 | Red Laminate", value: 325.14, rarity: "classified" },
   { name: "AWP | BOOM", value: 350.45, rarity: "classified" },
   { name: "P90 | Death by Kitty", value: 42.44, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ Karambit | Boreal Forest", value: 1231.35, rarity: "contraband" },
+  { name: "★ Karambit | Crimson Web", value: 2500.00, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Slaughter", value: 1100.00, rarity: "contraband" },
+  { name: "★ Gut Knife | Case Hardened - Gut Knife", value: 750.00, rarity: "contraband" },
+  { name: "★ Flip Knife | Blue Steel", value: 500.00, rarity: "contraband" },
 ]
 
 const esports2013winterItems: { name: string; value: number; rarity: string; }[] = [
@@ -240,7 +400,11 @@ const esports2013winterItems: { name: string; value: number; rarity: string; }[]
   { name: "AWP | Eletric Hive", value: 75.64, rarity: "classified" },
   { name: "Desert Eagle | Cobalt Disruption", value: 110.25, rarity: "classified" },
   { name: "M4A4 | X-Ray", value: 142.12, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ Gut Knife | Urban Masked", value: 3072.35, rarity: "contraband" },
+  { name: "★ Flip Knife | Blue Steel", value: 1800.00, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Fade", value: 1300.00, rarity: "contraband" },
+  { name: "★ Karambit | Safari Mesh", value: 900.00, rarity: "contraband" },
+  { name: "★ Gut Knife | Forest DDPAT", value: 600.00, rarity: "contraband" },
 ]
 
 const esports2014summerItems: { name: string; value: number; rarity: string; }[] = [
@@ -261,7 +425,11 @@ const esports2014summerItems: { name: string; value: number; rarity: string; }[]
   { name: "AWP | Corticera", value: 83.33, rarity: "classified" },
   { name: "M4A4 | Bullet Rain", value: 187.50, rarity: "covert" },
   { name: "AK-47 | Jaguar", value: 322.49, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Stained", value: 3072.35, rarity: "contraband" },
+  { name: "★ Karambit | Night - Karambit", value: 2200.00, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Night - M9 Bayonet", value: 1400.00, rarity: "contraband" },
+  { name: "★ Gut Knife | Fade", value: 1000.00, rarity: "contraband" },
+  { name: "★ Bayonet | Foest DDPAT", value: 400.00, rarity: "contraband" },
 ]
 
 const bravoItems: { name: string; value: number; rarity: string; }[] = [
@@ -280,7 +448,11 @@ const bravoItems: { name: string; value: number; rarity: string; }[] = [
   { name: "AWP | Graphite", value: 200.07, rarity: "classified" },
   { name: "AK-47 | Fire Serpent", value: 3154.32, rarity: "covert" },
   { name: "Desert Eagle | Golden Koi", value: 283.07, rarity: "covert" },
-  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Fade", value: 1869.04, rarity: "contraband" },
+  { name: "★ M9 Bayonet | Slaughter - M9 Bayonet", value: 1169.22, rarity: "contraband" },
+  { name: "★ Karambit | Vanilla", value: 1736.47, rarity: "contraband" },
+  { name: "★ Karambit | Stained", value: 900.00, rarity: "contraband" },
+  { name: "★ Bayonet | Slaughter - Bayonet", value: 468.75, rarity: "contraband" },
 ]
 
 const hydraItems: { name: string; value: number; rarity: string; }[] = [
@@ -301,7 +473,11 @@ const hydraItems: { name: string; value: number; rarity: string; }[] = [
   { name: "M4A4 | Hellfire", value: 390.00, rarity: "classified" },
   { name: "Five-SeveN | Hyper Beast", value: 129.85, rarity: "covert" },
   { name: "AWP | Oni Taiji", value: 525.00, rarity: "covert" },
-  { name: "Sport Gloves | Pandora's Box", value: 32000.00, rarity: "contraband" },
+  { name: "★ Sport Gloves | Pandora's Box", value: 24000.00, rarity: "contraband" },
+  { name: "★ Moto Gloves | Spearmint", value: 18000.00, rarity: "contraband" },
+  { name: "★ Driver Gloves | Crimson Weave", value: 15000.00, rarity: "contraband" },
+  { name: "★ Hand Wraps | Slaughter", value: 12000.00, rarity: "contraband" },
+  { name: "★ Specialist Gloves | Foundation", value: 8000.00, rarity: "contraband" },
 ]
 
 const ripideItems: { name: string; value: number; rarity: string; }[] = [
@@ -322,7 +498,10 @@ const ripideItems: { name: string; value: number; rarity: string; }[] = [
   { name: "SSG 08 | Turbo Peek", value: 283.07, rarity: "covert" },
   { name: "Desert Eagle | Ocean Drive", value: 283.07, rarity: "covert" },
   { name: "AK-47 | Leet Museo", value: 283.07, rarity: "covert" },
-  { name: "Butterfly Knife | Gamma Doppler", value: 4432.00, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Gamma Doppler - Butterfly Knife", value: 3324.00, rarity: "contraband" },
+  { name: "★ Karambit | Autotronic", value: 243.54, rarity: "contraband" },
+  { name: "★ Bowie Knife | Freehand", value: 124.11, rarity: "contraband" },
+  { name: "★ Bowie Knife | Gamma Doppler - Bowie Knife", value: 343.00, rarity: "contraband" },
 ]
 
 const gloveItems: { name: string; value: number; rarity: string; }[] = [
@@ -343,7 +522,11 @@ const gloveItems: { name: string; value: number; rarity: string; }[] = [
   { name: "FAMAS | Mecha Industries", value: 21.65, rarity: "classified" },
   { name: "SSG 08 | Dragonfire", value: 44.25, rarity: "covert" },
   { name: "M4A4 | Buzz Kill", value: 311.25, rarity: "covert" },
-  { name: "★ Specialist Gloves", value: 32000.00, rarity: "contraband" },
+  { name: "★ Sport Gloves | Pandora's Box", value: 47784.88, rarity: "contraband" },
+  { name: "★ Sport Gloves | Hedge Maze", value: 42107.03, rarity: "contraband" },
+  { name: "★ Sport Gloves | Superconductor", value: 17778.43, rarity: "contraband" },
+  { name: "★ Specialist Gloves | Crimson Kimono", value: 17174.25, rarity: "contraband" },
+  { name: "★ Moto Gloves | Spearmint", value: 11052.73, rarity: "contraband" },
 ]
 
 
@@ -443,7 +626,7 @@ function getRandomItem(
   if (rand < chances.consumerGroup) {
     pool = items.filter((i) => i.rarity === "consumer" || i.rarity === "mil-spec");
   } else if (rand < chances.consumerGroup + chances.restricted) {
-    pool = items.filter((i) => i.rarity === "restricted");
+    pool = items.filter((i) => i.rarity === "resticted");
   } else if (rand < chances.consumerGroup + chances.restricted + chances.classified) {
     pool = items.filter((i) => i.rarity === "classified");
   } else if (rand < chances.consumerGroup + chances.restricted + chances.classified + chances.covert) {
