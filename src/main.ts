@@ -47,6 +47,7 @@ const caseNamesHigh: string[] = [
   "Operation Bravo Case",
   "CS:GO Weapon Case",
   "CS:GO Weapon Case 2",
+  "eSports 2013 Case",
   "eSports 2013 Winter Case",
   "eSports 2014 Summer Case",
 ]
@@ -55,6 +56,7 @@ const casesHigh: Record<string, string> = {
   "Operation Bravo Case" : "/assets/cases/operation bravo.png",
   "CS:GO Weapon Case" : "/assets/cases/weapon.png",
   "CS:GO Weapon Case 2" : "/assets/cases/weapon2.png",
+  "eSports 2013 Case" : "/assets/cases/esports 2013.png",
   "eSports 2013 Winter Case" : "/assets/cases/esports 2013 winter.png",
   "eSports 2014 Summer Case" : "/assets/cases/esports 2014 summer.png"
 
@@ -150,15 +152,44 @@ const weaponItems: { name: string; value: number; rarity: string; }[] = [
   { name: "SG 553 | Ultraviolet", value: 34.45, rarity: "mil-spec" },
   { name: "AUG | Wings", value: 13.54, rarity: "mil-spec" },
   { name: "Glock-18 | Dragon Tattoo", value: 120.00, rarity: "restricted" },
-  { name: "M4A1-S | Dark Water - m4a1-s", value: 90.00, rarity: "restricted" },
-  { name: "USP-S | Dark Water - usp-s", value: 61.40, rarity: "restricted" },
+  { name: "M4A1-S | Dark Water - M4A1-S", value: 90.00, rarity: "restricted" },
+  { name: "USP-S | Dark Water - USP-S", value: 61.40, rarity: "restricted" },
   { name: "Desert Eagle | Hypnotic", value: 98.24, rarity: "classified" },
   { name: "AK-47 | Case Hardened", value: 370.99, rarity: "classified" },
   { name: "AWP | Lightning Strike", value: 543.54, rarity: "covert" },
-  { name: "Karambit | Fade", value: 2045.65, rarity: "contraband" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+]
+
+const weapon2Items: { name: string; value: number; rarity: string; }[] = [
+  { name: "SCAR-20 | Crimson Web", value: 8.45, rarity: "mil-spec" },
+  { name: "P250 | Hive", value: 2.44, rarity: "mil-spec" },
+  { name: "FMAS | Hexane", value: 2.54, rarity: "mil-spec" },
+  { name: "Tec-9 | Blue Titanium", value: 6.50, rarity: "mil-spec" },
+  { name: "M4A1-S | Blood Tiger", value: 8.07, rarity: "mil-spec" },
+  { name: "Nova | Graphite", value: 12.13, rarity: "restricted" },
+  { name: "Dual Berettas | Hemoglobin", value: 12.24, rarity: "restricted" },
+  { name: "MP9 | Hypnotic", value: 12.41, rarity: "restricted" },
+  { name: "Five-SeveN | Case Hardened", value: 15.23, rarity: "restricted" },
+  { name: "P90 | Cold Blooded", value: 49.59, rarity: "classified" },
+  { name: "USP-S | Serum", value: 54.09, rarity: "classified" },
+  { name: "SSG 08 | Blood in the Water", value: 94.17, rarity: "covert" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
 ]
 
 const esports2013Items: { name: string; value: number; rarity: string; }[] = [
+  { name: "MAG-7 | Memento", value: 2.12, rarity: "mil-spec" },
+  { name: "FAMAS | Doomkitty", value: 1.54, rarity: "mil-spec" },
+  { name: "M4A4 | Faded Zebra", value: 11.07, rarity: "mil-spec" },
+  { name: "Sawed-Off | Orange DDPAT - Sawed-Off", value: 32.54, rarity: "restricted" },
+  { name: "P250 | Splash", value: 22.00, rarity: "restricted" },
+  { name: "Galil AR | Orange DDPAT - Galil AR", value: 25.05, rarity: "restricted" },
+  { name: "AK-47 | Red Laminate", value: 325.14, rarity: "classified" },
+  { name: "AWP | BOOM", value: 350.45, rarity: "classified" },
+  { name: "P90 | Death by Kitty", value: 42.44, rarity: "covert" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+]
+
+const esports2013winterItems: { name: string; value: number; rarity: string; }[] = [
   { name: "MAG-7 | Memento", value: 2.12, rarity: "mil-spec" },
   { name: "FAMAS | Dookitty", value: 1.54, rarity: "mil-spec" },
   { name: "M4A4 | Faded Zebra", value: 11.07, rarity: "mil-spec" },
@@ -168,7 +199,7 @@ const esports2013Items: { name: string; value: number; rarity: string; }[] = [
   { name: "AK-47 | Red Laminate", value: 325.14, rarity: "classified" },
   { name: "AWP | BOOM", value: 350.45, rarity: "classified" },
   { name: "P90 | Death by Kitty", value: 42.44, rarity: "covert" },
-  { name: "Karambit | Fade", value: 2045.65, rarity: "contraband" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
 ]
 
 const bravoItems: { name: string; value: number; rarity: string; }[] = [
@@ -187,15 +218,16 @@ const bravoItems: { name: string; value: number; rarity: string; }[] = [
   { name: "AWP | Graphite", value: 200.07, rarity: "classified" },
   { name: "AK-47 | Fire Serpent", value: 3154.32, rarity: "covert" },
   { name: "Desert Eagle | Golden Koi", value: 283.07, rarity: "covert" },
-  { name: "Karambit | Fade", value: 2045.65, rarity: "contraband" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
 
 ]
 
 const relationHigh: Record<string, { name: string; value: number; rarity: string; }[]> = {
   "CS:GO Weapon Case" : weaponItems,
-  "eSports 2013 Winter Case" : esports2013Items,
+  "eSports 2013 Case" : esports2013Items,
+  "eSports 2013 Winter Case" : esports2013winterItems,
   "Operation Bravo Case" : bravoItems,
-  "CS:GO Weapon Case 2" : weaponItems,
+  "CS:GO Weapon Case 2" : weapon2Items,
   "eSports 2014 Summer Case" : esports2013Items,
 }
 
@@ -331,11 +363,13 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     
     if (isHighCase) {
       const currentCaseHigh = caseNamesHigh[onCaseHigh];
+      console.log(currentCaseHigh)
       if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
       else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
-      else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'kilowatt';
-      else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'kilowatt';
-      else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'revolution';
+      else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'weapon case 2';
+      else if (currentCaseHigh === 'eSports 2013 Case') folder = 'esports 2013';
+      else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'esports 2013 winter';
+      else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'esports 2014 summer';
       else folder = 'kilowatt';
     } else {
       const currentCaseLow = caseNamesLow[onCaseLow];
@@ -392,10 +426,14 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
   const currentCaseLow = caseNamesLow[onCaseLow];
   const currentCaseHigh = caseNamesHigh[onCaseHigh];
   
+  console.log(onHigh)
+  console.log(currentCaseHigh)
+
   if (onHigh) {
     if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
     else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
     else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'weapon case 2';
+    else if (currentCaseHigh === 'eSports 2013 Case') folder = 'esports 2013';
     else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'esports 2013 winter';
     else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'esports 2014 summer';
   } else {
@@ -443,7 +481,7 @@ function startCaseOpeningLow() {
     // Set the actual item image (not gold.png for contraband)
     const itemImage = document.getElementById('item-image') as HTMLImageElement;
     if (itemImage) {
-      itemImage.src = getActualItemImage(item.name);
+      itemImage.src = getActualItemImage(item.name, false);
       itemImage.alt = item.name;
     }
     
@@ -483,7 +521,7 @@ function startCaseOpeningHigh() {
     // Set the actual item image (not gold.png for contraband)
     const itemImage = document.getElementById('item-image') as HTMLImageElement;
     if (itemImage) {
-      itemImage.src = getActualItemImage(item.name);
+      itemImage.src = getActualItemImage(item.name, true);
       itemImage.alt = item.name;
     }
     
