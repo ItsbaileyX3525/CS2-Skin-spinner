@@ -83,6 +83,9 @@ const caseNamesHigh: string[] = [
   "eSports 2013 Case",
   "eSports 2013 Winter Case",
   "eSports 2014 Summer Case",
+  "Operation Hydra Case",
+  "Operation Riptide Case",
+  "Glove Case",
 ]
 
 const casesHigh: Record<string, string> = {
@@ -91,8 +94,10 @@ const casesHigh: Record<string, string> = {
   "CS:GO Weapon Case 2" : "/assets/cases/weapon2.png",
   "eSports 2013 Case" : "/assets/cases/esports 2013.png",
   "eSports 2013 Winter Case" : "/assets/cases/esports 2013 winter.png",
-  "eSports 2014 Summer Case" : "/assets/cases/esports 2014 summer.png"
-
+  "eSports 2014 Summer Case" : "/assets/cases/esports 2014 summer.png",
+  "Operation Hydra Case" : "/assets/cases/operation hydra.png",
+  "Operation Riptide Case" : "/assets/cases/operation riptide.png",
+  "Glove Case" : "/assets/cases/glove.png",
 }
 
 //@ts-ignore
@@ -276,8 +281,71 @@ const bravoItems: { name: string; value: number; rarity: string; }[] = [
   { name: "AK-47 | Fire Serpent", value: 3154.32, rarity: "covert" },
   { name: "Desert Eagle | Golden Koi", value: 283.07, rarity: "covert" },
   { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
-
 ]
+
+const hydraItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "FAMAS | Macabre", value: 4.34, rarity: "mil-spec" },
+  { name: "MAG-7 | Hard Water", value: 2.99, rarity: "mil-spec" },
+  { name: "UMP-45 | Metal Flowers", value: 3.88, rarity: "mil-spec" },
+  { name: "Tec-9 | Cut Out", value: 7.38, rarity: "mil-spec" },
+  { name: "MAC-10 | Aloha", value: 4.41, rarity: "mil-spec" },
+  { name: "M4A1-S | Briefing", value: 25.89, rarity: "mil-spec" },
+  { name: "USP-S | Blueprint", value: 36.00, rarity: "mil-spec" },
+  { name: "P2000 | Woodsman", value: 17.42, rarity: "restricted" },
+  { name: "P250 | Red Rock", value: 21.79, rarity: "restricted" },
+  { name: "P90 | Death Grip", value: 19.68, rarity: "restricted" },
+  { name: "SSG 08 | Death's Head", value: 18.39, rarity: "restricted" },
+  { name: "AK-47 | Orbit Mk01", value: 74.54, rarity: "restricted" },
+  { name: "Dual Berettas | Cobra Strike", value: 44.98, rarity: "classified" },
+  { name: "Galil AR | Sugar Rush", value: 87.95, rarity: "classified" },
+  { name: "M4A4 | Hellfire", value: 390.00, rarity: "classified" },
+  { name: "Five-SeveN | Hyper Beast", value: 129.85, rarity: "covert" },
+  { name: "AWP | Oni Taiji", value: 525.00, rarity: "covert" },
+  { name: "Sport Gloves | Pandora's Box", value: 32000.00, rarity: "contraband" },
+]
+
+const ripideItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "Dual Berettas | Tread", value: 8.00, rarity: "mil-spec" },
+  { name: "G3SG1 | Keeping Tabs", value: 10.43, rarity: "mil-spec" },
+  { name: "MP7 | Guerrilla", value: 15.08, rarity: "mil-spec" },
+  { name: "PP-Bizon | Lumen", value: 7.56, rarity: "mil-spec" },
+  { name: "AUG | Plague", value: 23.25, rarity: "mil-spec" },
+  { name: "XM1014 | Watchdog", value: 8.32, rarity: "mil-spec" },
+  { name: "USP-S | Black Lotus", value: 45.00, rarity: "restricted" },
+  { name: "MAG-7 | BI83 Spectrum", value: 39.12, rarity: "restricted" },
+  { name: "FAMAS | ZX Spectron", value: 63.00, rarity: "restricted" },
+  { name: "Five-SeveN | Boost Protocol", value: 60.00, rarity: "restricted" },
+  { name: "MP9 | Mount Fuji", value: 240.00, rarity: "classified" },
+  { name: "M4A4 | Spider Lily", value: 132.12, rarity: "classified" },
+  { name: "MAC-10 | Toybox", value: 200.07, rarity: "classified" },
+  { name: "Glock-18 | Snack Attack", value: 3154.32, rarity: "covert" },
+  { name: "SSG 08 | Turbo Peek", value: 283.07, rarity: "covert" },
+  { name: "Desert Eagle | Ocean Drive", value: 283.07, rarity: "covert" },
+  { name: "AK-47 | Leet Museo", value: 283.07, rarity: "covert" },
+  { name: "Butterfly Knife | Gamma Doppler", value: 4432.00, rarity: "contraband" },
+]
+
+const gloveItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "MAG-7 | Sonar", value: 0.48, rarity: "mil-spec" },
+  { name: "MP9 | Sand Scale", value: 0.32, rarity: "mil-spec" },
+  { name: "P2000 | Turf", value: 0.74, rarity: "mil-spec" },
+  { name: "Galil AR | Black Sand", value: 0.63, rarity: "mil-spec" },
+  { name: "CZ75-Auto | Polymer", value: 0.46, rarity: "mil-spec" },
+  { name: "MP7 | Cirrus", value: 0.61, rarity: "mil-spec" },
+  { name: "Glock-18 | Ironwork", value: 1.92, rarity: "mil-spec" },
+  { name: "G3SG1 | Stinger", value: 2.00, rarity: "restricted" },
+  { name: "Nova | Gila", value: 1.67, rarity: "restricted" },
+  { name: "Dual Berettas | Royal Consorts", value: 3.46, rarity: "restricted" },
+  { name: "M4A1-S | Flashback", value: 10.29, rarity: "restricted" },
+  { name: "USP-S | Cyrex", value: 7.84, rarity: "restricted" },
+  { name: "Sawed-Off | Wasteland Princess", value: 18.01, rarity: "classified" },
+  { name: "P90 | Shallow Grave", value: 14.36, rarity: "classified" },
+  { name: "FAMAS | Mecha Industries", value: 21.65, rarity: "classified" },
+  { name: "SSG 08 | Dragonfire", value: 44.25, rarity: "covert" },
+  { name: "M4A4 | Buzz Kill", value: 311.25, rarity: "covert" },
+  { name: "★ Specialist Gloves", value: 32000.00, rarity: "contraband" },
+]
+
 
 const relationHigh: Record<string, { name: string; value: number; rarity: string; }[]> = {
   "CS:GO Weapon Case" : weaponItems,
@@ -286,6 +354,9 @@ const relationHigh: Record<string, { name: string; value: number; rarity: string
   "Operation Bravo Case" : bravoItems,
   "CS:GO Weapon Case 2" : weapon2Items,
   "eSports 2014 Summer Case" : esports2014summerItems,
+  "Operation Hydra Case" : hydraItems,
+  "Operation Riptide Case" : ripideItems,
+  "Glove Case" : gloveItems,
 }
 
 
@@ -427,6 +498,9 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
       else if (currentCaseHigh === 'eSports 2013 Case') folder = 'esports 2013';
       else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'esports 2013 winter';
       else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'esports 2014 summer';
+      else if (currentCaseHigh === 'Operation Riptide Case') folder = 'operation riptide';
+      else if (currentCaseHigh === 'Operation Hydra Case') folder = 'operation hydra';
+      else if (currentCaseHigh === 'Glove Case') folder = 'glove';
       else folder = 'kilowatt';
     } else {
       const currentCaseLow = caseNamesLow[onCaseLow];
@@ -493,6 +567,9 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
     else if (currentCaseHigh === 'eSports 2013 Case') folder = 'esports 2013';
     else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'esports 2013 winter';
     else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'esports 2014 summer';
+    else if (currentCaseHigh === 'Operation Riptide Case') folder = 'operation riptide';
+    else if (currentCaseHigh === 'Operation Hydra Case') folder = 'operation hydra';
+    else if (currentCaseHigh === 'Glove Case') folder = 'glove';
   } else {
     if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
     else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
