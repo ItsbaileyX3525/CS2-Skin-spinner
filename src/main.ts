@@ -117,10 +117,32 @@ const revolutionItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Glove | Vice", value: 12521.42, rarity: "contraband" },
 ]
 
+const fractureItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "P90 | Freight", value: 0.14, rarity: "mil-spec" },
+  { name: "Negev | Ultralight", value: 0.13, rarity: "mil-spec" },
+  { name: "PP-Bizon | Runic", value: 0.15, rarity: "mil-spec" },
+  { name: "P2000 | Gnarled", value: 0.17, rarity: "mil-spec" },
+  { name: "SG 553 | Ol' Rusty", value: 0.12, rarity: "mil-spec" },
+  { name: "SSG 08 | Mainframe 001", value: 0.15, rarity: "mil-spec" },
+  { name: "P250 | Cassette", value: 0.15, rarity: "mil-spec" },
+  { name: "MAC-10 | Allure", value: 1.40, rarity: "restricted" },
+  { name: "Tec-9 | Brother", value: 2.10, rarity: "restricted" },
+  { name: "MAG-7 | Monster Call", value: 2.03, rarity: "restricted" },
+  { name: "MP5-SD | Kitbash", value: 0.99, rarity: "restricted" },
+  { name: "Galil AR | Connexion", value: 1.45, rarity: "restricted" },
+  { name: "XM1014 | Entombed", value: 6.12, rarity: "classified" },
+  { name: "M4A4 | Tooth Fairy", value: 16.00, rarity: "classified" },
+  { name: "Glock-18 | Vouge", value: 8.32, rarity: "classified" },
+  { name: "AK-47 | Legion of Anubis", value: 35.23, rarity: "covert" },
+  { name: "Desert Eagle | Printstream", value: 75.43, rarity: "covert" },
+  { name: "Skeleton Knife | Fade", value: 1278.94, rarity: "contrband" },
+
+]
+
 const relationLow: Record<string, { name: string; value: number; rarity: string; }[]> = {
   "Kilowatt Case" : kilowattItems,
   "Revolution Case" : revolutionItems,
-  "Fracture Case" : kilowattItems,
+  "Fracture Case" : fractureItems,
 }
 
 const weaponItems: { name: string; value: number; rarity: string; }[] = [
@@ -128,8 +150,8 @@ const weaponItems: { name: string; value: number; rarity: string; }[] = [
   { name: "SG 553 | Ultraviolet", value: 34.45, rarity: "mil-spec" },
   { name: "AUG | Wings", value: 13.54, rarity: "mil-spec" },
   { name: "Glock-18 | Dragon Tattoo", value: 120.00, rarity: "restricted" },
-  { name: "M4A1-S | Dark Water", value: 90.00, rarity: "restricted" },
-  { name: "USP-S | Dark Water", value: 61.40, rarity: "restricted" },
+  { name: "M4A1-S | Dark Water - m4a1-s", value: 90.00, rarity: "restricted" },
+  { name: "USP-S | Dark Water - usp-s", value: 61.40, rarity: "restricted" },
   { name: "Desert Eagle | Hypnotic", value: 98.24, rarity: "classified" },
   { name: "AK-47 | Case Hardened", value: 370.99, rarity: "classified" },
   { name: "AWP | Lightning Strike", value: 543.54, rarity: "covert" },
@@ -310,7 +332,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     if (isHighCase) {
       const currentCaseHigh = caseNamesHigh[onCaseHigh];
       if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
-      else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'kilowatt';
+      else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
       else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'kilowatt';
       else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'kilowatt';
       else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'revolution';
@@ -319,6 +341,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
       const currentCaseLow = caseNamesLow[onCaseLow];
       if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
       else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
+      else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
       else folder = 'kilowatt';
     }
     
@@ -355,34 +378,33 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     wheelItems.appendChild(itemDiv);
   });
   
-  console.log(`Created ${wheelItemsArray.length} items, winning position: ${winningPosition}`);
-  
   const itemWidth = 84;
   const wheelCenter = weaponWheel.offsetWidth / 2;
   
   const finalPosition = -(winningPosition * itemWidth) + wheelCenter - (itemWidth / 2);
   
-  console.log(`Final position: ${finalPosition}px`);
   document.documentElement.style.setProperty('--final-position', `${finalPosition}px`);
 }
 
-function getActualItemImage(itemName: string): string {
+function getActualItemImage(itemName: string, onHigh: boolean = false): string {
   let folder = '';
   
-  // Determine which case type we're dealing with
   const currentCaseLow = caseNamesLow[onCaseLow];
   const currentCaseHigh = caseNamesHigh[onCaseHigh];
   
-  // Check if we're in a high case context
-  if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
-  else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'kilowatt';
-  else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'kilowatt';
-  else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'kilowatt';
-  else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'revolution';
-  else if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
-  else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
-  else folder = 'kilowatt';
-  
+  if (onHigh) {
+    if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
+    else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
+    else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'weapon case 2';
+    else if (currentCaseHigh === 'eSports 2013 Winter Case') folder = 'esports 2013 winter';
+    else if (currentCaseHigh === 'eSports 2014 Summer Case') folder = 'esports 2014 summer';
+  } else {
+    if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
+    else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
+    else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
+    else folder = 'kilowatt';
+  }
+
   const imageName = itemName.split(' | ')[1]?.toLowerCase().replace(/\s+/g, ' ') || 'slag';
   return `/assets/${folder}/${imageName}.png`;
 }
@@ -392,7 +414,9 @@ function startWheelSpin(): void {
 }
 
 function startCaseOpeningLow() {  
-  openSound.play().catch(e => console.log("Could not play sound:", e));
+  openSound.pause()
+  openSound.currentTime = 0.0
+  openSound.play()
   
   openScreen.classList.remove("hidden");
   openScreen.classList.add("absolute");
@@ -430,7 +454,9 @@ function startCaseOpeningLow() {
 } 
 
 function startCaseOpeningHigh() {  
-  openSound.play().catch(e => console.log("Could not play sound:", e));
+  openSound.pause()
+  openSound.currentTime = 0.0
+  openSound.play()
   
   openScreen.classList.remove("hidden");
   openScreen.classList.add("absolute");
