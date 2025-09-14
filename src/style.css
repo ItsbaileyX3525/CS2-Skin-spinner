@@ -71,9 +71,9 @@
 }
 
 .wheel-item {
-  min-width: 80px;
-  width: 80px;
-  height: 90px;
+  min-width: 120px;
+  width: 120px;
+  height: 240px;
   margin: 5px 2px;
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  padding: 4px;
+  padding: 8px;
 }
 
 .rarity-consumer { border-color: #9ca3af; background: linear-gradient(135deg, #374151, #4b5563); }

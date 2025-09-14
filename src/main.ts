@@ -28,6 +28,8 @@ let totalSpent: number = 0.00
 let totalGain: number = 0.00
 let onCaseLow: number = 0
 let onCaseHigh: number = 0
+let keyPriceLow: number = 2.50
+let keyPriceHigh: number = 9.50 //Fluctuates a lot so just keep it at an average
 
 let cachedPrices: Record<string, string> = {}
 
@@ -190,15 +192,39 @@ const esports2013Items: { name: string; value: number; rarity: string; }[] = [
 ]
 
 const esports2013winterItems: { name: string; value: number; rarity: string; }[] = [
-  { name: "MAG-7 | Memento", value: 2.12, rarity: "mil-spec" },
-  { name: "FAMAS | Dookitty", value: 1.54, rarity: "mil-spec" },
-  { name: "M4A4 | Faded Zebra", value: 11.07, rarity: "mil-spec" },
-  { name: "Sawed-Off | Orange DDPAT", value: 32.54, rarity: "restricted" },
-  { name: "P250 | Splash", value: 22.00, rarity: "restricted" },
-  { name: "Galil AR | Orange DDPAT", value: 25.05, rarity: "restricted" },
-  { name: "AK-47 | Red Laminate", value: 325.14, rarity: "classified" },
-  { name: "AWP | BOOM", value: 350.45, rarity: "classified" },
-  { name: "P90 | Death by Kitty", value: 42.44, rarity: "covert" },
+  { name: "PP-Bizon | Water Sigil", value: 4.15, rarity: "mil-spec" },
+  { name: "Nova | Ghost Camo", value: 1.94, rarity: "mil-spec" },
+  { name: "Five-SeveN | Nightshade", value: 2.07, rarity: "mil-spec" },
+  { name: "G3SG1 | Azure Zebra", value: 2.45, rarity: "mil-spec" },
+  { name: "P250 | Steel Disruption", value: 2.43, rarity: "mil-spec" },
+  { name: "Galil AR | Blue Titanium", value: 7.14, rarity: "mil-spec" },
+  { name: "P90 | Blind Spot", value: 8.32, rarity: "restricted" },
+  { name: "AK-47 | Blue Laminate", value: 26.42, rarity: "restricted" },
+  { name: "FAMAS | Afterimage", value: 32.28, rarity: "classified" },
+  { name: "AWP | Eletric Hive", value: 75.64, rarity: "classified" },
+  { name: "Desert Eagle | Cobalt Disruption", value: 110.25, rarity: "classified" },
+  { name: "M4A4 | X-Ray", value: 142.12, rarity: "covert" },
+  { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
+]
+
+const esports2014summerItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "CZ75-Auto | Hexane", value: 2.89, rarity: "mil-spec" },
+  { name: "XM1014 | Red Python", value: 1.49, rarity: "mil-spec" },
+  { name: "Negev | Bratatat", value: 4.34, rarity: "mil-spec" },
+  { name: "SSG 08 | Dark Water", value: 1.82, rarity: "mil-spec" },
+  { name: "USP-S | Blood Tiger", value: 5.00, rarity: "mil-spec" },
+  { name: "MAC-10 | Ultraviolet", value: 26.39, rarity: "mil-spec" },
+  { name: "P90 | Virus", value: 4.42, rarity: "restricted" },
+  { name: "PP-Bizon | Blue Streak", value: 6.93, rarity: "restricted" },
+  { name: "MP7 | Ocean Foam", value: 3.74, rarity: "restricted" },
+  { name: "Glock-18 | Steel Disruption", value: 6.81, rarity: "restricted" },
+  { name: "Desert Eagle | Crimson Web", value: 114.63, rarity: "restricted" },
+  { name: "AUG | Bengal Tiger", value: 32.52, rarity: "classified" },
+  { name: "P2000 | Corticera", value: 30.95, rarity: "classified" },
+  { name: "Nova | Bloomstick", value: 37.57, rarity: "classified" },
+  { name: "AWP | Corticera", value: 83.33, rarity: "classified" },
+  { name: "M4A4 | Bullet Rain", value: 187.50, rarity: "covert" },
+  { name: "AK-47 | Jaguar", value: 322.49, rarity: "covert" },
   { name: "Karambit | Fade", value: 3890.65, rarity: "contraband" },
 ]
 
@@ -228,7 +254,7 @@ const relationHigh: Record<string, { name: string; value: number; rarity: string
   "eSports 2013 Winter Case" : esports2013winterItems,
   "Operation Bravo Case" : bravoItems,
   "CS:GO Weapon Case 2" : weapon2Items,
-  "eSports 2014 Summer Case" : esports2013Items,
+  "eSports 2014 Summer Case" : esports2014summerItems,
 }
 
 
@@ -406,13 +432,13 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     const imageUrl = getItemImage(item.name, item.rarity);
     
     itemDiv.innerHTML = `
-      <img src="${imageUrl}" alt="${item.name}" class="w-16 h-16 object-contain" onerror="this.style.display='none'">
+      <img src="${imageUrl}" alt="${item.name}" class="w-24 h-24 object-contain" onerror="this.style.display='none'">
     `;
     
     wheelItems.appendChild(itemDiv);
   });
   
-  const itemWidth = 84;
+  const itemWidth = 124;
   const wheelCenter = weaponWheel.offsetWidth / 2;
   
   const finalPosition = -(winningPosition * itemWidth) + wheelCenter - (itemWidth / 2);
@@ -564,6 +590,7 @@ buyButtonLow.addEventListener("click", () => {
   if (!caseLoaded) {
     return
   }
+  totalSpent += keyPriceLow
   totalSpent += marketPriceLow
   totalGain -= marketPriceLow
   spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
@@ -604,6 +631,7 @@ buyButtonHigh.addEventListener("click", () => {
   if (!caseLoaded) {
     return
   }
+  totalSpent += keyPriceHigh
   totalSpent += marketPriceHigh
   totalGain -= marketPriceHigh
   spentAmountText.innerHTML = "£" + String(totalSpent.toFixed(2))
