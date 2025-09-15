@@ -71,7 +71,7 @@ const caseNamesLow: string[] = [
   "Snakebite Case",
   "Fever Case",
   "Clutch Case",
-  "Dreams & Nightmares Case",
+  "Dreams And Nightmares Case",
   "Falchion Case",
   "Danger Zone Case",
   "Horizon Case",
@@ -84,7 +84,7 @@ const casesLow: Record<string, string> = {
   "Snakebite Case" : "/assets/cases/snakebite.png",
   "Fever Case" : "/assets/cases/fever.png",
   "Clutch Case" : "/assets/cases/clutch.png",
-  "Dreams & Nightmares Case" : "/assets/cases/dreams.png",
+  "Dreams And Nightmares Case" : "/assets/cases/dreams.png",
   "Falchion Case" : "/assets/cases/falchion.png",
   "Danger Zone Case" : "/assets/cases/danger zone.png",
   "Horizon Case" : "/assets/cases/horizon.png"
@@ -414,7 +414,7 @@ const relationLow: Record<string, { name: string; value: number; rarity: string;
   "Snakebite Case" : snakebiteItems,
   "Fever Case" : feverItems,
   "Clutch Case" : clutchItems,
-  "Dreams & Nightmares Case" : DreamsNightmaresItems,
+  "Dreams And Nightmares Case" : DreamsNightmaresItems,
   "Falchion Case" : flachionItems,
   "Danger Zone Case" : dangerzoneItems,
   "Horizon Case" : horizonItems
@@ -644,6 +644,8 @@ async function fetchPriceLow(caseType: string): Promise<void> {
   for (let e of validCase) {
     caseUrl += e + "%20"
   }
+
+  console.log(caseUrl)
   const fetched = await fetch(`https://api.flik.host/steam_market.php?item=${caseUrl}`)
   
   const data = await fetched.json();
@@ -774,7 +776,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
       if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
       else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
       else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
-      else if (currentCaseLow === 'Dreams & Nightmares Case') folder = 'dreams';
+      else if (currentCaseLow === 'Dreams And Nightmares Case') folder = 'dreams';
       else if (currentCaseLow === 'Danger Zone Case') folder = 'danger';
       else if (currentCaseLow === 'Falchion Case') folder = 'falchion';
       else if (currentCaseLow === 'Clutch Case') folder = 'clutch';
@@ -846,7 +848,7 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
     if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
     else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
     else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
-    else if (currentCaseLow === 'Dreams & Nightmares Case') folder = 'dreams';
+    else if (currentCaseLow === 'Dreams And Nightmares Case') folder = 'dreams';
     else if (currentCaseLow === 'Danger Zone Case') folder = 'danger';
     else if (currentCaseLow === 'Falchion Case') folder = 'falchion';
     else if (currentCaseLow === 'Clutch Case') folder = 'clutch';
