@@ -645,7 +645,6 @@ async function fetchPriceLow(caseType: string): Promise<void> {
     caseUrl += e + "%20"
   }
 
-  console.log(caseUrl)
   const fetched = await fetch(`https://api.flik.host/steam_market.php?item=${caseUrl}`)
   
   const data = await fetched.json();
