@@ -36,9 +36,9 @@ let keyPriceLow: number = 2.50
 let keyPriceHigh: number = 9.50 //Fluctuates a lot so just keep it at an average
 
 const winSounds: HTMLAudioElement[] = [
-  new Audio("/sounds/EZ4ENCE.wav"),
-  new Audio("/sounds/inhuman.wav"),
-  new Audio("/sounds/Ultimate.wav"),
+  new Audio("/sounds/EZ4ENCE.mp3"),
+  new Audio("/sounds/inhuman.mp3"),
+  new Audio("/sounds/Ultimate.mp3"),
   new Audio("/sounds/Michael.mp3")
 ]
 
@@ -148,13 +148,13 @@ const _blank: { name: string; value: number; rarity: string; }[] = [
 
 
 const kilowattItems: { name: string; value: number; rarity: string }[] = [
-  { name: "Tec-9 | Slag", value: 0.18, rarity: "consumer" },
-  { name: "XM1014 | Irezumi", value: 0.14, rarity: "consumer" },
-  { name: "UMP-45 | Motorized", value: 0.14, rarity: "consumer" },
-  { name: "SSG 08 | Dezastre", value: 0.15, rarity: "consumer" },
-  { name: "Nova | Dark Sigil", value: 0.13, rarity: "consumer" },
-  { name: "Dual Berettas | Hideout", value: 0.14, rarity: "consumer" },
-  { name: "MAC-10 | Light Box", value: 0.23, rarity: "consumer" },
+  { name: "Tec-9 | Slag", value: 0.18, rarity: "mil-spec" },
+  { name: "XM1014 | Irezumi", value: 0.14, rarity: "mil-spec" },
+  { name: "UMP-45 | Motorized", value: 0.14, rarity: "mil-spec" },
+  { name: "SSG 08 | Dezastre", value: 0.15, rarity: "mil-spec" },
+  { name: "Nova | Dark Sigil", value: 0.13, rarity: "mil-spec" },
+  { name: "Dual Berettas | Hideout", value: 0.14, rarity: "mil-spec" },
+  { name: "MAC-10 | Light Box", value: 0.23, rarity: "mil-spec" },
   { name: "MP7 | Just Smile", value: 1.25, rarity: "mil-spec" },
   { name: "Five-SeveN | Hybrid", value: 1.57, rarity: "mil-spec" },
   { name: "Sawed-Off | Analog Input", value: 1.04, rarity: "mil-spec" },
@@ -298,7 +298,7 @@ const feverItems: { name: string; value: number; rarity: string; }[] = [
 ]
 
 const  clutchItems: { name: string; value: number; rarity: string; }[] = [
-  { name: "MP9 | Blank Sand", value: 0.26, rarity: "mil-spec" },
+  { name: "MP9 | Black Sand", value: 0.26, rarity: "mil-spec" },
   { name: "PP-Bizon | Night Riot", value: 0.26, rarity: "mil-spec" },
   { name: "P2000 | Urban Hazard", value: 0.23, rarity: "mil-spec" },
   { name: "XM1014 | Oxide Blaze", value: 0.23, rarity: "mil-spec" },
@@ -722,8 +722,8 @@ function getRandomItem(
     ? source
     : Object.keys(source).map((k) => {
         const v = source[k];
-        if (typeof v === "number") return { name: k, value: v, rarity: "consumer" };
-        return { name: k, value: typeof v.value === "number" ? v.value : 0, rarity: v.rarity ?? "consumer" };
+        if (typeof v === "number") return { name: k, value: v, rarity: "mil-spec" };
+        return { name: k, value: typeof v.value === "number" ? v.value : 0, rarity: v.rarity ?? "mil-spec" };
       });
 
   const chances = {
@@ -738,7 +738,7 @@ function getRandomItem(
   let pool: typeof items = [];
 
   if (rand < chances.milspec) {
-    pool = items.filter((i) => i.rarity === "consumer" || i.rarity === "mil-spec");
+    pool = items.filter((i) => i.rarity === "mil-spec");
   } else if (rand < chances.milspec + chances.restricted) {
     pool = items.filter((i) => i.rarity === "restricted");
   } else if (rand < chances.milspec + chances.restricted + chances.classified) {
@@ -760,8 +760,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
   wheelItems.innerHTML = '';
   
   const rarityWeights: Record<string, number> = {
-    consumer: 7992,
-    "mil-spec": 7992,
+    "mil-spec": 15984,
     restricted: 1598,
     classified: 320,
     covert: 64,
@@ -1097,6 +1096,12 @@ dontEraseButton.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   loadData()
+  for (let e of Object.values(musicKits)) {
+    e.volume = .1
+  }
+  for (let e of winSounds) {
+    e.volume = .1
+  }
   await fetchPriceLow("Kilowatt Case")
   await fetchPriceHigh("Operation Bravo Case")
 });
