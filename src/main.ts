@@ -42,6 +42,15 @@ const winSounds: HTMLAudioElement[] = [
   new Audio("/sounds/Michael.mp3")
 ]
 
+const musicKits: Record<string, HTMLAudioElement> = {
+  "Music Kit | Inhuman" : new Audio('/sounds/inhuman.wav'),
+  "Music Kit | Reason" : new Audio('/sounds/Reason.mp3'),
+  "Music Kit | Feel The Power" : new Audio('/sounds/Feel The Power.mp3'),
+  "Music Kit | Make U SWEAT!" : new Audio('/sounds/Make U SWEAT!.mp3'),
+  "Music Kit | Under Bright Lights" : new Audio('/sounds/Under Bright Lights.mp3'),
+  "Music Kit | All Night" : new Audio('/sounds/All Night.mp3'),
+}
+
 let cachedPrices: Record<string, string> = {}
 
 function saveData(): void {
@@ -82,6 +91,7 @@ const caseNamesLow: string[] = [
   "Falchion Case",
   "Danger Zone Case",
   "Horizon Case",
+  "NIGHTMODE Music Kit"
 ]
 
 const casesLow: Record<string, string> = {
@@ -94,7 +104,8 @@ const casesLow: Record<string, string> = {
   "Dreams And Nightmares Case" : "/assets/cases/dreams.png",
   "Falchion Case" : "/assets/cases/falchion.png",
   "Danger Zone Case" : "/assets/cases/danger zone.png",
-  "Horizon Case" : "/assets/cases/horizon.png"
+  "Horizon Case" : "/assets/cases/horizon.png",
+  "NIGHTMODE Music Kit" : "/assets/kits/nightmode.png"
 }
 
 const caseNamesHigh: string[] = [
@@ -118,7 +129,7 @@ const casesHigh: Record<string, string> = {
   "eSports 2014 Summer Case" : "/assets/cases/esports 2014 summer.png",
   "Operation Hydra Case" : "/assets/cases/operation hydra.png",
   "Operation Riptide Case" : "/assets/cases/operation riptide.png",
-  "Glove Case" : "/assets/cases/glove.png",
+  "Glove Case" : "/assets/cases/glove.png"
 }
 
 //@ts-ignore
@@ -413,6 +424,15 @@ const horizonItems: { name: string; value: number; rarity: string; }[] = [
   { name: "★ Talon Knife | Case Hardened", value: 725.84, rarity: "contraband" },
 ]
 
+const NIGHTMODEitems: { name: string; value: number; rarity: string; }[] = [
+  { name: "Music Kit | Under Bright Lights", value: 8.21, rarity: "covert" },
+  { name: "Music Kit | Inhuman", value: 5.57, rarity: "covert" },
+  { name: "Music Kit | All Night", value: 2.62, rarity: "covert" },
+  { name: "Music Kit | Reason", value: 1.55, rarity: "covert" },
+  { name: "Music Kit | Feel The Power", value: 1.45, rarity: "covert" },
+  { name: "Music Kit | Make U SWEAT!", value: 0.97, rarity: "covert" },
+]
+
 const relationLow: Record<string, { name: string; value: number; rarity: string; }[]> = {
   "Kilowatt Case" : kilowattItems,
   "Revolution Case" : revolutionItems,
@@ -424,7 +444,8 @@ const relationLow: Record<string, { name: string; value: number; rarity: string;
   "Dreams And Nightmares Case" : DreamsNightmaresItems,
   "Falchion Case" : flachionItems,
   "Danger Zone Case" : dangerzoneItems,
-  "Horizon Case" : horizonItems
+  "Horizon Case" : horizonItems,
+  "NIGHTMODE Music Kit" : NIGHTMODEitems
 }
 
 const weaponItems: { name: string; value: number; rarity: string; }[] = [
@@ -790,6 +811,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
       else if (currentCaseLow === 'Recoil Case') folder = 'recoil';
       else if (currentCaseLow === 'Snakebite Case') folder = 'snakebite';      
       else if (currentCaseLow === 'Horizon Case') folder = 'horizon';      
+      else if (currentCaseLow === 'NIGHTMODE Music Kit') folder = 'nightmode';      
       else folder = 'kilowatt';
     }
     
@@ -861,7 +883,8 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
     else if (currentCaseLow === 'Fever Case') folder = 'fever';
     else if (currentCaseLow === 'Recoil Case') folder = 'recoil';
     else if (currentCaseLow === 'Snakebite Case') folder = 'snakebite';      
-    else if (currentCaseLow === 'Horizon Case') folder = 'horizon';      
+    else if (currentCaseLow === 'Horizon Case') folder = 'horizon';
+    else if (currentCaseLow === 'NIGHTMODE Music Kit') folder = 'nightmode';      
     else folder = 'kilowatt';
   }
 
@@ -896,6 +919,11 @@ function startCaseOpeningLow() {
     setTimeout(() => {
       winSounds[Math.floor(Math.random() * ((winSounds.length - 1) - 0 + 1)) + 0].play()
     }, 6500)
+  }
+  if (item.name.startsWith("Music Kit")) {
+      setTimeout(() => {
+        musicKits[item.name].play()
+      }, 6500)
   }
 
   setTimeout(() => {
@@ -1039,6 +1067,10 @@ buyButtonHigh.addEventListener("click", () => {
 
 closeOpeningButton.addEventListener("click", () => {
   for (let e of winSounds) {
+    e.pause()
+    e.currentTime = 0
+  }
+  for (let e of Object.values(musicKits)) {
     e.pause()
     e.currentTime = 0
   }
