@@ -91,7 +91,7 @@
 }
 
 .rarity-consumer { border-color: #9ca3af; background: linear-gradient(135deg, #374151, #4b5563); }
-.rarity-mil-spec { border-color: #3b82f6; background: linear-gradient(135deg, #1e40af, #3b82f6); }
+.rarity-mil-spec { border-color: #9ca3af; background: linear-gradient(135deg, #374151, #4b5563); }
 .rarity-restricted { border-color: #8b5cf6; background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
 .rarity-classified { border-color: #a78bfa; background: linear-gradient(135deg, #7c3aed, #a78bfa); }
 .rarity-covert { border-color: #ef4444; background: linear-gradient(135deg, #b91c1c, #ef4444); }

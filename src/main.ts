@@ -35,6 +35,13 @@ let onCaseHigh: number = 0
 let keyPriceLow: number = 2.50
 let keyPriceHigh: number = 9.50 //Fluctuates a lot so just keep it at an average
 
+const winSounds: HTMLAudioElement[] = [
+  new Audio("/sounds/EZ4ENCE.wav"),
+  new Audio("/sounds/inhuman.wav"),
+  new Audio("/sounds/Ultimate.wav"),
+  new Audio("/sounds/Michael.mp3")
+]
+
 let cachedPrices: Record<string, string> = {}
 
 function saveData(): void {
@@ -811,7 +818,7 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     itemDiv.className = `wheel-item rarity-${item.rarity}`;
     
     const imageUrl = getItemImage(item.name, item.rarity);
-    
+
     itemDiv.innerHTML = `
       <img src="${imageUrl}" alt="${item.name}" class="w-24 h-24 object-contain" onerror="this.style.display='none'">
     `;
@@ -879,13 +886,18 @@ function startCaseOpeningLow() {
   weaponWheel.classList.remove('wheel-spinning');
   
   const item = getRandomItem(relationLow[caseNamesLow[onCaseLow]]);
-  
   createWheelItems(relationLow[caseNamesLow[onCaseLow]], item, false);
   
   setTimeout(() => {
     startWheelSpin();
   }, 500);
   
+  if (item.rarity == "contraband") {
+    setTimeout(() => {
+      winSounds[Math.floor(Math.random() * ((winSounds.length - 1) - 0 + 1)) + 0].play()
+    }, 6500)
+  }
+
   setTimeout(() => {
     totalGain += item.value;
     gainAmountText.innerHTML = "£" + String(totalGain.toFixed(2));
@@ -1026,6 +1038,10 @@ buyButtonHigh.addEventListener("click", () => {
 })
 
 closeOpeningButton.addEventListener("click", () => {
+  for (let e of winSounds) {
+    e.pause()
+    e.currentTime = 0
+  }
   openScreen.classList.add("hidden")
   openScreen.classList.remove("absolute")
   weaponWheel.classList.remove('wheel-spinning')
