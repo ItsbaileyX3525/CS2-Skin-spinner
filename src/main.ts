@@ -43,7 +43,7 @@ const winSounds: HTMLAudioElement[] = [
 ]
 
 const musicKits: Record<string, HTMLAudioElement> = {
-  "Music Kit | Inhuman" : new Audio('/sounds/inhuman.wav'),
+  "Music Kit | Inhuman" : new Audio('/sounds/inhuman.mp3'),
   "Music Kit | Reason" : new Audio('/sounds/Reason.mp3'),
   "Music Kit | Feel The Power" : new Audio('/sounds/Feel The Power.mp3'),
   "Music Kit | Make U SWEAT!" : new Audio('/sounds/Make U SWEAT!.mp3'),
