@@ -727,23 +727,23 @@ function getRandomItem(
       });
 
   const chances = {
-    consumerGroup: 50,
-    restricted: 30,
-    classified: 15,
-    covert: 4.74,
+    milspec: 79.92,
+    restricted: 15.98,
+    classified: 3.2,
+    covert: 0.64,
     contraband: 0.26,
   };
 
   const rand = Math.random() * 100;
   let pool: typeof items = [];
 
-  if (rand < chances.consumerGroup) {
+  if (rand < chances.milspec) {
     pool = items.filter((i) => i.rarity === "consumer" || i.rarity === "mil-spec");
-  } else if (rand < chances.consumerGroup + chances.restricted) {
-    pool = items.filter((i) => i.rarity === "resticted");
-  } else if (rand < chances.consumerGroup + chances.restricted + chances.classified) {
+  } else if (rand < chances.milspec + chances.restricted) {
+    pool = items.filter((i) => i.rarity === "restricted");
+  } else if (rand < chances.milspec + chances.restricted + chances.classified) {
     pool = items.filter((i) => i.rarity === "classified");
-  } else if (rand < chances.consumerGroup + chances.restricted + chances.classified + chances.covert) {
+  } else if (rand < chances.milspec + chances.restricted + chances.classified + chances.covert) {
     pool = items.filter((i) => i.rarity === "covert");
   } else {
     pool = items.filter((i) => i.rarity === "contraband");
@@ -760,12 +760,12 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
   wheelItems.innerHTML = '';
   
   const rarityWeights: Record<string, number> = {
-    consumer: 500,
-    "mil-spec": 500,
-    restricted: 100,
-    classified: 30,
-    covert: 8,
-    contraband: 1
+    consumer: 7992,
+    "mil-spec": 7992,
+    restricted: 1598,
+    classified: 320,
+    covert: 64,
+    contraband: 26
   };
   
   const createWeightedPool = (items: typeof caseItems): typeof caseItems => {
