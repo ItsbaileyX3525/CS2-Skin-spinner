@@ -71,7 +71,10 @@ const caseNamesLow: string[] = [
   "Snakebite Case",
   "Fever Case",
   "Clutch Case",
-  "Dreams & Nightmares Case"
+  "Dreams & Nightmares Case",
+  "Falchion Case",
+  "Danger Zone Case",
+  "Horizon Case",
 ]
 
 const casesLow: Record<string, string> = {
@@ -81,7 +84,10 @@ const casesLow: Record<string, string> = {
   "Snakebite Case" : "/assets/cases/snakebite.png",
   "Fever Case" : "/assets/cases/fever.png",
   "Clutch Case" : "/assets/cases/clutch.png",
-  "Dreams & Nightmares Case" : "/assets/cases/dreams.png"
+  "Dreams & Nightmares Case" : "/assets/cases/dreams.png",
+  "Falchion Case" : "/assets/cases/falchion.png",
+  "Danger Zone Case" : "/assets/cases/danger zone.png",
+  "Horizon Case" : "/assets/cases/horizon.png"
 }
 
 const caseNamesHigh: string[] = [
@@ -226,7 +232,7 @@ const recoilItems: { name: string; value: number; rarity: string; }[] = [
 const snakebiteItems: { name: string; value: number; rarity: string; }[] = [
   { name: "R8 Revolver | Junk Yard", value: 0.57, rarity: "mil-spec" },
   { name: "UMP-45 | Oscillator", value: 0.41, rarity: "mil-spec" },
-  { name: "CZ75-Auto | Circaetus", value: 0.49, rarity: "mil-spec" },
+  { name: "CZ75-Auto | Circaetus", value: 0.48, rarity: "mil-spec" },
   { name: "SG 553 | Heavy Metal", value: 0.51, rarity: "mil-spec" },
   { name: "M249 | O.S.I.P.R.", value: 0.44, rarity: "mil-spec" },
   { name: "Nova | Windblown", value: 0.42, rarity: "mil-spec" },
@@ -234,11 +240,11 @@ const snakebiteItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Negev | dev_texture", value: 1.34, rarity: "restricted" },
   { name: "MAC-10 | Button Masher", value: 1.40, rarity: "restricted" },
   { name: "P250 | Cyber Shell", value: 1.52, rarity: "restricted" },
-  { name: "Desert Eagle | Trigger Discipline", value: 3.59, rarity: "restricted" },
-  { name: "AK-47 | Slate", value: 15.45, rarity: "restricted" },
+  { name: "Desert Eagle | Trigger Discipline", value: 3.82, rarity: "restricted" },
+  { name: "AK-47 | Slate", value: 15.94, rarity: "restricted" },
   { name: "XM1014 | XOXO", value: 12.53, rarity: "classified" },
   { name: "MP9 | Food Chain", value: 12.32, rarity: "classified" },
-  { name: "Galil AR | Chromatic Aberration", value: 16.41, rarity: "classified" },
+  { name: "Galil AR | Chromatic Aberration", value: 16.22, rarity: "classified" },
   { name: "USP-S | The Traitor", value: 111.00, rarity: "covert" },
   { name: "M4A4 | In Living Color", value: 116.25, rarity: "covert" },
   { name: "★ Sport Gloves | Slingshot", value: 5263.37, rarity: "contraband" },
@@ -298,28 +304,106 @@ const  clutchItems: { name: string; value: number; rarity: string; }[] = [
   { name: "★ Hydra Gloves | Mangrove", value: 651.39, rarity: "contraband" },
 ]
 
-const  DreamsNightmaresItems: { name: string; value: number; rarity: string; }[] = [
-  { name: "P2000 | Lifted Sprits", value: 0.26, rarity: "mil-spec" },
-  { name: "Sawed-Off | Spirit Board", value: 0.26, rarity: "mil-spec" },
-  { name: "MP5-SD | Necro Jr.", value: 0.23, rarity: "mil-spec" },
-  { name: "Five-SeveN | Scrawl", value: 0.23, rarity: "mil-spec" },
-  { name: "MAC-10 | Ensnared", value: 0.32, rarity: "mil-spec" },
-  { name: "MAG-7 | Foresight", value: 1.01, rarity: "mil-spec" },
-  { name: "SCAR-20 | Poultrygeist", value: 0.71, rarity: "mil-spec" },
-  { name: "G3SG1 | Dream Glade", value: 2.33, rarity: "restricted" },
-  { name: "XM1014 | Zombie Offensive", value: 2.11, rarity: "restricted" },
-  { name: "PP-Bizon | Space Cat", value: 2.21, rarity: "restricted" },
-  { name: "M4A1-S | Night Terror", value: 1.70, rarity: "restricted" },
-  { name: "MP7 | Abyssal Appartition", value: 1.71, rarity: "restricted" },
-  { name: "Dual Berettas | Melondrama", value: 11.87, rarity: "classified" },
-  { name: "FAMAS | Rapid Eye Movement", value: 18.24, rarity: "classified" },
-  { name: "MP9 | Starlight Protector", value: 27.74, rarity: "classified" },
-  { name: "AK-47 | Nightwish", value: 19.47, rarity: "covert" },
-  { name: "★ Shadow Doppler | Gamma Doppler", value: 1031.25, rarity: "contraband" },
-  { name: "★ Falchion Knife | Freehand", value: 395.63, rarity: "contraband" },
-  { name: "★ Bowie Knife | Lore", value: 503.08, rarity: "contraband" },
-  { name: "★ Butterfly Knife | Black laminate", value: 325.10, rarity: "contraband" },
-  { name: "★ Shadow Daggers | Bright Water", value: 651.39, rarity: "contraband" },
+const DreamsNightmaresItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "P2000 | Lifted Spirits", value: 0.22, rarity: "mil-spec" },
+  { name: "Sawed-Off | Spirit Board", value: 0.22, rarity: "mil-spec" },
+  { name: "MP5-SD | Necro Jr.", value: 0.20, rarity: "mil-spec" },
+  { name: "Five-SeveN | Scrawl", value: 0.26, rarity: "mil-spec" },
+  { name: "MAC-10 | Ensnared", value: 0.26, rarity: "mil-spec" },
+  { name: "MAG-7 | Foresight", value: 0.18, rarity: "mil-spec" },
+  { name: "SCAR-20 | Poultrygeist", value: 0.18, rarity: "mil-spec" },
+  { name: "G3SG1 | Dream Glade", value: 1.35, rarity: "restricted" },
+  { name: "XM1014 | Zombie Offensive", value: 0.88, rarity: "restricted" },
+  { name: "PP-Bizon | Space Cat", value: 1.16, rarity: "restricted" },
+  { name: "USP-S | Ticket to Hell", value: 1.13, rarity: "restricted" },
+  { name: "M4A1-S | Night Terror", value: 2.27, rarity: "restricted" },
+  { name: "MP7 | Abyssal Apparition", value: 6.92, rarity: "classified" },
+  { name: "Dual Berettas | Melondrama", value: 7.43, rarity: "classified" },
+  { name: "FAMAS | Rapid Eye Movement", value: 9.14, rarity: "classified" },
+  { name: "MP9 | Starlight Protector", value: 17.34, rarity: "covert" },
+  { name: "AK-47 | Nightwish", value: 76.55, rarity: "covert" },
+  { name: "★ Butterfly Knife | Gamma Doppler", value: 3426.15, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Lore", value: 3187.49, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Autotronic", value: 2201.25, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Freehand", value: 989.26, rarity: "contraband" },
+  { name: "★ Butterfly Knife | Black Laminate", value: 1263.75, rarity: "contraband" },
+  { name: "★ Huntsman Knife | Gamma Doppler", value: 347.24, rarity: "contraband" },
+  { name: "★ Bowie Knife | Gamma Doppler", value: 307.50, rarity: "contraband" },
+  { name: "★ Falchion Knife | Gamma Doppler", value: 318.86, rarity: "contraband" },
+]
+
+const flachionItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "Nova | Ranger", value: 0.71, rarity: "mil-spec" },
+  { name: "UMP-45 | Riot", value: 0.53, rarity: "mil-spec" },
+  { name: "P90 | Elite Build", value: 0.71, rarity: "mil-spec" },
+  { name: "Glock-18 | Bunsen Burner", value: 2.10, rarity: "mil-spec" },
+  { name: "Galil AR | Rocket Pop", value: 7.57, rarity: "mil-spec" },
+  { name: "USP-S | Torque", value: 1.43, rarity: "mil-spec" },
+  { name: "Negev | Loudmouth", value: 4.31, rarity: "restricted" },
+  { name: "P2000 | Handgun", value: 3.69, rarity: "restricted" },
+  { name: "FAMAS | Neural Net", value: 2.94, rarity: "restricted" },
+  { name: "MP9 | Ruby Poison Dart", value: 2.72, rarity: "restricted" },
+  { name: "M4A4 | Evil Daimyo", value: 17.15, rarity: "restricted" },
+  { name: "CZ75-Auto | Yellow Jacket", value: 22.27, rarity: "classified" },
+  { name: "SG 553 | Cyrex", value: 20.44, rarity: "classified" },
+  { name: "MP7 | Nemesis", value: 20.23, rarity: "classified" },
+  { name: "AK-47 | Aquamarine Revenge", value: 200.71, rarity: "covert" },
+  { name: "AWP | Hyper Beast", value: 247.49, rarity: "covert" },
+  { name: "★ Falchion Knife | Slaughter", value: 249.95, rarity: "contraband" },
+  { name: "★ Falchion Knife | Case Hardened", value: 285.00, rarity: "contraband" },
+  { name: "★ Falchion Knife | Blue Steel", value: 220.00, rarity: "contraband" },
+  { name: "★ Falchion Knife | Boreal Forest", value: 163.67, rarity: "contraband" },
+  { name: "★ Falchion Knife | Vanilla", value: 143.84, rarity: "contraband" },
+]
+
+const dangerzoneItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "Sawed-Off | Black Sand", value: 0.23, rarity: "mil-spec" },
+  { name: "Nova | Wood Fired", value: 0.20, rarity: "mil-spec" },
+  { name: "SG 553 | Danger Close", value: 0.23, rarity: "mil-spec" },
+  { name: "Tec-9 | Fubar", value: 0.55, rarity: "mil-spec" },
+  { name: "MP9 | Modest Threat", value: 0.21, rarity: "mil-spec" },
+  { name: "Glock-18 | Oxide Blaze", value: 0.65, rarity: "mil-spec" },
+  { name: "M4A4 | Magnesium", value: 5.45, rarity: "mil-spec" },
+  { name: "G3SG1 | Scavenger", value: 1.39, rarity: "restricted" },
+  { name: "MAC-10 | Pipe Down", value: 2.09, rarity: "restricted" },
+  { name: "Galil AR | Signal", value: 1.85, rarity: "restricted" },
+  { name: "P250 | Nevermore", value: 1.94, rarity: "restricted" },
+  { name: "USP-S | Flashback", value: 1.96, rarity: "restricted" },
+  { name: "MP5-SD | Phosphor", value: 10.03, rarity: "classified" },
+  { name: "UMP-45 | Momentum", value: 8.79, rarity: "classified" },
+  { name: "Desert Eagle | Mecha Industries", value: 14.90, rarity: "classified" },
+  { name: "AWP | Neo-Noir", value: 47.37, rarity: "covert" },
+  { name: "AK-47 | Asiimov", value: 240.00, rarity: "covert" },
+  { name: "★ Stiletto Knife | Fade", value: 651.21, rarity: "contraband" },
+  { name: "★ Talon Knife | Blue Steel", value: 584.44, rarity: "contraband" },
+  { name: "★ Navaja Knife | Crimson Web", value: 175.53, rarity: "contraband" },
+  { name: "★ Talon Knife | Vanilla", value: 89.14, rarity: "contraband" },
+  { name: "★ Navaja Knife | Case Hardened", value: 189.14, rarity: "contraband" },
+]
+
+const horizonItems: { name: string; value: number; rarity: string; }[] = [
+  { name: "R8 Revolver | Survivalist", value: 0.39, rarity: "mil-spec" },
+  { name: "AUG | Amber Slipstream", value: 0.34, rarity: "mil-spec" },
+  { name: "Dual Berettas | Shread", value: 0.38, rarity: "mil-spec" },
+  { name: "P90 | Traction", value: 0.77, rarity: "mil-spec" },
+  { name: "Tec-9 | Snek-9", value: 0.78, rarity: "mil-spec" },
+  { name: "MP9 | Capillary", value: 0.48, rarity: "mil-spec" },
+  { name: "Glock-18 | Warhawk", value: 0.86, rarity: "mil-spec" },
+  { name: "MP7 | Powercore", value: 3.58, rarity: "restricted" },
+  { name: "CZ75-Auto | Eco", value: 3.82, rarity: "restricted" },
+  { name: "G3SG1 | High Seas", value: 3.50, rarity: "restricted" },
+  { name: "Nova | Toy Soldier", value: 3.83, rarity: "restricted" },
+  { name: "AWP | PAW", value: 5.57, rarity: "restricted" },
+  { name: "Sawed-Off | Devourer", value: 16.62, rarity: "classified" },
+  { name: "FAMAS | Eye of Athena", value: 18.43, rarity: "classified" },
+  { name: "M4A1-S | Nightmare", value: 75.00, rarity: "classified" },
+  { name: "Desert Eagle | Code Red", value: 152.75, rarity: "covert" },
+  { name: "AK-47 | Neon Rider", value: 225.00, rarity: "covert" },
+  { name: "★ Stiletto Knife | Fade", value: 651.21, rarity: "contraband" },
+  { name: "★ Stiletto Knife | Night Stripe", value: 299.99, rarity: "contraband" },
+  { name: "★ Ursus Knife | Stained", value: 150.06, rarity: "contraband" },
+  { name: "★ Navaja Knife | Vanilla", value: 89.14, rarity: "contraband" },
+  { name: "★ Talon Knife | Case Hardened", value: 725.84, rarity: "contraband" },
 ]
 
 const relationLow: Record<string, { name: string; value: number; rarity: string; }[]> = {
@@ -330,7 +414,10 @@ const relationLow: Record<string, { name: string; value: number; rarity: string;
   "Snakebite Case" : snakebiteItems,
   "Fever Case" : feverItems,
   "Clutch Case" : clutchItems,
-  "Dreams & Nightmares" : DreamsNightmaresItems
+  "Dreams & Nightmares Case" : DreamsNightmaresItems,
+  "Falchion Case" : flachionItems,
+  "Danger Zone Case" : dangerzoneItems,
+  "Horizon Case" : horizonItems
 }
 
 const weaponItems: { name: string; value: number; rarity: string; }[] = [
@@ -585,13 +672,11 @@ async function fetchPriceHigh(caseType: string): Promise<void> {
   for (let e of validCase) {
     caseUrl += e + "%20"
   }
-  console.log(caseType)
   const fetched = await fetch(`https://api.flik.host/steam_market.php?item=${caseUrl}`)
   
   const data = await fetched.json();
 
   if (!data || !data.mean_price) {
-    console.log(data)
     return;
   }
 
@@ -674,7 +759,6 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
     
     if (isHighCase) {
       const currentCaseHigh = caseNamesHigh[onCaseHigh];
-      console.log(currentCaseHigh)
       if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
       else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
       else if (currentCaseHigh === 'CS:GO Weapon Case 2') folder = 'weapon case 2';
@@ -690,6 +774,14 @@ function createWheelItems(caseItems: { name: string; value: number; rarity: stri
       if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
       else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
       else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
+      else if (currentCaseLow === 'Dreams & Nightmares Case') folder = 'dreams';
+      else if (currentCaseLow === 'Danger Zone Case') folder = 'danger';
+      else if (currentCaseLow === 'Falchion Case') folder = 'falchion';
+      else if (currentCaseLow === 'Clutch Case') folder = 'clutch';
+      else if (currentCaseLow === 'Fever Case') folder = 'fever';
+      else if (currentCaseLow === 'Recoil Case') folder = 'recoil';
+      else if (currentCaseLow === 'Snakebite Case') folder = 'snakebite';      
+      else if (currentCaseLow === 'Horizon Case') folder = 'horizon';      
       else folder = 'kilowatt';
     }
     
@@ -740,9 +832,6 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
   const currentCaseLow = caseNamesLow[onCaseLow];
   const currentCaseHigh = caseNamesHigh[onCaseHigh];
   
-  console.log(onHigh)
-  console.log(currentCaseHigh)
-
   if (onHigh) {
     if (currentCaseHigh === 'Operation Bravo Case') folder = 'operation bravo';
     else if (currentCaseHigh === 'CS:GO Weapon Case') folder = 'weapon case 1';
@@ -757,6 +846,14 @@ function getActualItemImage(itemName: string, onHigh: boolean = false): string {
     if (currentCaseLow === 'Kilowatt Case') folder = 'kilowatt';
     else if (currentCaseLow === 'Revolution Case') folder = 'revolution';
     else if (currentCaseLow === 'Fracture Case') folder = 'fracture';
+    else if (currentCaseLow === 'Dreams & Nightmares Case') folder = 'dreams';
+    else if (currentCaseLow === 'Danger Zone Case') folder = 'danger';
+    else if (currentCaseLow === 'Falchion Case') folder = 'falchion';
+    else if (currentCaseLow === 'Clutch Case') folder = 'clutch';
+    else if (currentCaseLow === 'Fever Case') folder = 'fever';
+    else if (currentCaseLow === 'Recoil Case') folder = 'recoil';
+    else if (currentCaseLow === 'Snakebite Case') folder = 'snakebite';      
+    else if (currentCaseLow === 'Horizon Case') folder = 'horizon';      
     else folder = 'kilowatt';
   }
 
