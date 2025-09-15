@@ -430,11 +430,11 @@ const weaponItems: { name: string; value: number; rarity: string; }[] = [
   { name: "Desert Eagle | Hypnotic", value: 98.24, rarity: "classified" },
   { name: "AK-47 | Case Hardened", value: 370.99, rarity: "classified" },
   { name: "AWP | Lightning Strike", value: 543.54, rarity: "covert" },
-  { name: "★ M9 Bayonet | Fade", value: 1869.04, rarity: "contraband" },
+  { name: "★ Gut Knife | Fade", value: 221.04, rarity: "contraband" },
   { name: "★ Karambit | Vanilla", value: 1736.47, rarity: "contraband" },
   { name: "★ M9 Bayonet | Blue Steel", value: 873.71, rarity: "contraband" },
   { name: "★ M9 Bayonet | Stained", value: 657.75, rarity: "contraband" },
-  { name: "★ Bayonet | Vanilla", value: 359.19, rarity: "contraband" },
+  { name: "★ Gut Knife | Case Hardened - Gut Knife", value: 323.19, rarity: "contraband" },
 ]
 
 const weapon2Items: { name: string; value: number; rarity: string; }[] = [
